@@ -12,7 +12,7 @@ var myArr;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         myArr = JSON.parse(this.responseText);
-        alert(myArr.result);
+        document.getElementById("columnofuzz").textContent=myArr.result;
     }
 };
 xmlhttp.open("GET", url, true);

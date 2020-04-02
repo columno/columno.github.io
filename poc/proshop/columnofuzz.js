@@ -1,4 +1,3 @@
-<script>
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -18,5 +17,3 @@ xmlhttp.onreadystatechange = function () {
 };
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
-
-</script>

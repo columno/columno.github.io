@@ -12,7 +12,7 @@ var myArr;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         myArr = JSON.parse(this.responseText);
-        document.getElementById("columnofuzz").textContent=myArr.result;
+        document.getElementById("columnofuzz").innerHTML="<a href='https://www.proshop.dk/?s=" + myArr.result + "'>" + myArr.result + "</a>";
     }
 };
 xmlhttp.open("GET", url, true);

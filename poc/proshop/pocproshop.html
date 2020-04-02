@@ -13,7 +13,7 @@ var myArr;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         myArr = JSON.parse(this.responseText);
-        alert(myArr);
+        alert(myArr.result);
     }
 };
 xmlhttp.open("GET", url, true);

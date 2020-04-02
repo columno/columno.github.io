@@ -8,7 +8,7 @@ function getUrlParameter(name) {
 var query = getUrlParameter('s');
 
 var xmlhttp = new XMLHttpRequest();
-var url = "http://ec2-34-254-146-35.eu-west-1.compute.amazonaws.com/?q=" + query;
+var url = "https://api.columno.com/?q=" + query;
 var myArr;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {

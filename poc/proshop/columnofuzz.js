@@ -14,6 +14,7 @@ xmlhttp.onreadystatechange = function () {
         myArr = JSON.parse(this.responseText);
         if(myArr.result) {
             document.getElementById("columnofuzz").innerHTML="<a href='https://www.proshop.dk/?s=" + myArr.result + "'>" + myArr.result + "</a>";
+            document.getElementById("columnofuzz").style.display = "block";
         }
     }
 };

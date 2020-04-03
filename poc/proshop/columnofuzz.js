@@ -13,8 +13,8 @@ xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         myArr = JSON.parse(this.responseText);
         if(myArr.result) {
-            document.getElementById("columnofuzz").innerHTML="<a href='https://www.proshop.dk/?s=" + myArr.result + "'>" + myArr.result + "</a>";
-            document.getElementById("columnofuzz").style.display = "block";
+            document.getElementById("columnofuzzinner").innerHTML="<a href='https://www.proshop.dk/?s=" + myArr.result + "'>" + myArr.result + "</a>";
+            document.getElementById("columnofuzzouter").style.display = "block";
         }
     }
 };

@@ -177,7 +177,7 @@ SELECT * FROM NyTest WHERE age=10 OR age=51 LIMIT 5;
 SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
                         </div>
                     </div>
-                    <a href="#" id="btnExec" onclick="loadDoc();" class="ls-button is button has-text-weight-bold is-success">Execute</a>&nbsp;&nbsp;
+                    <a href="#" id="btnExec" onclick="loadDoc();return false;" class="ls-button is button has-text-weight-bold is-success">Execute</a>&nbsp;&nbsp;
                     <a href="#contact" class="ls-button is-one-third button has-text-weight-bold is-info">New SELECTs</a>&nbsp;&nbsp;
                     <a href="#contact" class="ls-button button has-text-weight-bold is-info">New INSERTs</a>
 
@@ -195,10 +195,10 @@ SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
             <div class="column left is-4-desktop">
                 <div class="tabs is-toggle">
                     <ul>
-                        <li class="tablinks is-active" id="li1"><a href="#" onclick="openTab('li1', 'st1result')">Results 1</a></li>
-                        <li class="tablinks" id="li2"><a href="#" onclick="openTab('li2', 'st2result')">Results 2</a></li>
-                        <li class="tablinks" id="li3"><a href="#" onclick="openTab('li3', 'st3result')">Results 3</a></li>
-                        <li class="tablinks" id="li4"><a href="#" onclick="openTab('li4', 'st4result')">Results 4</a></li>
+                        <li class="tablinks is-active" id="li1"><a href="#" onclick="openTab('li1', 'st1result'); return false;">Results 1</a></li>
+                        <li class="tablinks" id="li2"><a href="#" onclick="openTab('li2', 'st2result'); return false;">Results 2</a></li>
+                        <li class="tablinks" id="li3"><a href="#" onclick="openTab('li3', 'st3result'); return false;">Results 3</a></li>
+                        <li class="tablinks" id="li4"><a href="#" onclick="openTab('li4', 'st4result'); return false;">Results 4</a></li>
                     </ul>
                 </div>
 

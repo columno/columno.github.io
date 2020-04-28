@@ -66,7 +66,7 @@
             removeData(myBarChart2);
             removeData(myBarChart2);
             var i = 0;
-            executeStmt("SELECT * FROM WarmupCon;\n" + document.getElementById("statements").value, i);
+            executeStmt("SELECT * FROM NyTest WHERE name='WarmUpCons';\n" + document.getElementById("statements").value, i);
             document.getElementById("btnExec").classList.remove("is-loading");
         }
 

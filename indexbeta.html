@@ -21,10 +21,10 @@
     <script>
         function addData(chart, label, data) {
             chart.data.labels.push(label);
-            //var i = 0;
+            var i = 0;
             chart.data.datasets.forEach((dataset) => {
-                dataset.data.push(data[0]);
-                dataset.data.push(data[1]);
+                dataset.data.push(data[i++]);
+                
             });
             chart.update();
         }
@@ -67,15 +67,15 @@
             removeData(myBarChart2);
             removeData(myBarChart2);
             var i = 1;
+            executeStmt(document.getElementById("statements").value, i);
             document.getElementById("statements").value.split("\n").forEach(function (v) {
-                executeStmt(v, i++);
+                
             });
             document.getElementById("btnExec").classList.remove("is-loading");
         }
         function executeStmt(stmt, stmtid) {
-            //alert(stmt);
             var xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + stmt, true);
+            xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + stmt.split("\n")[stmtid-1], true);
             xhttp.onload = function () {
                 
                 var jsonResponse = xhttp.response;
@@ -110,6 +110,11 @@
 
                 document.getElementById("tableBody" + stmtid).innerHTML = txt;
                 document.getElementById("tableHead" + stmtid).innerHTML = headtxt;
+
+                stmtid++;
+                if (stmtid <= stmt.split("\n").length) {
+                    executeStmt(stmt, stmtid);
+                }
             };
             xhttp.onerror = function () {
                 

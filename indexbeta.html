@@ -88,7 +88,7 @@
                 addData(myBarChart, "Statement " + stmtid, [myObj.ColumnoStats, myObj.PostgreStats]);
 
                 
-                addData(myBarChart2, "Statement " + stmtid, [Math.ceil((1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31), Math.ceil((0.000147 / 2) * 24 * 31), 37.2, 37.2]);
+                addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 37.2, 37.2]);
 
 //                addData(myBarChart, "Statement 1", myObj.PostgreStats);
                 for (x in myObj.Data) {

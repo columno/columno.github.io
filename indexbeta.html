@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <title>Columno - Next-generation database technologies</title>
+    <link href="css/main.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/img/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+
+    <script>
+        function addData(chart, label, data) {
+            chart.data.labels.push(label);
+            //var i = 0;
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.push(data[0]);
+                dataset.data.push(data[1]);
+            });
+            chart.update();
+        }
+
+        function removeData(chart) {
+            chart.data.labels.pop();
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.pop();
+            });
+            chart.update();
+        }
+
+        function openTab(evt, nm) {
+            var i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("is-active", "");
+            }
+
+            document.getElementById(nm).style.display = "block";
+
+            document.getElementById(evt).classList.add("is-active");
+        }
+
+        function loadDoc() {
+            document.getElementById("btnExec").classList.add("is-loading");
+
+            removeData(myBarChart);
+            removeData(myBarChart);
+            removeData(myBarChart);
+            removeData(myBarChart);
+            removeData(myBarChart2);
+            removeData(myBarChart2);
+            removeData(myBarChart2);
+            removeData(myBarChart2);
+            var i = 1;
+            document.getElementById("statements").value.split("\n").forEach(function (v) {
+                executeStmt(v, i++);
+            });
+            document.getElementById("btnExec").classList.remove("is-loading");
+        }
+        function executeStmt(stmt, stmtid) {
+            //alert(stmt);
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + stmt, true);
+            xhttp.onload = function () {
+                
+                var jsonResponse = xhttp.response;
+                myObj = JSON.parse(jsonResponse);
+                var txt = ""
+                var headtxt = "<td>id</td>";
+                var i = 0;
+
+                
+                addData(myBarChart, "Statement " + stmtid, [myObj.ColumnoStats, myObj.PostgreStats]);
+
+                
+                addData(myBarChart2, "Statement " + stmtid, [Math.ceil((1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31), Math.ceil((0.000147 / 2) * 24 * 31), 37.2, 37.2]);
+
+//                addData(myBarChart, "Statement 1", myObj.PostgreStats);
+                for (x in myObj.Data) {
+                    if (i == 0) {
+                        /*<tr>
+                            <th><abbr title="Position">Pos</abbr></th>
+                            <th>Name</th>
+                            <th><abbr title="Age">Age</abbr></th>
+                        </tr>*/
+                        //alert(Object.keys(myObj[x]));
+
+                        for (y in Object.keys(myObj.Data[x])) {
+                            headtxt += "<td>" + Object.keys(myObj.Data[x])[y] + "</td>";
+                        }
+                    }
+                    i++;
+                    txt += "<tr><td>" + i + "</td><td>" + myObj.Data[x].name + "</td><td>" + myObj.Data[x].age + "</td></tr>";
+                }
+
+                document.getElementById("tableBody" + stmtid).innerHTML = txt;
+                document.getElementById("tableHead" + stmtid).innerHTML = headtxt;
+            };
+            xhttp.onerror = function () {
+                
+
+            }
+            xhttp.send();
+            }
+            
+    </script>
+
+    <section class="hero ls-main-hero">
+        <div class="hero-head">
+            <nav class="navbar container ls-main-nav">
+                <div class="navbar-brand">
+                    <a href="/" class="navbar-item">
+                        <img src="img/Columno_300.png" width="300">
+                    </a>
+                    <a role="button" class="navbar-burger has-text-info" data-target="mainNavMenu" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="navbar-menu" id="mainNavMenu">
+                    <div class="navbar-end has-text-info">
+                        <a href="/" class="navbar-item is-size-7 is-active">Home</a>
+                        <a href="#whatis" class="navbar-item is-size-7">What is Columno?</a>
+                        <a href="#contact" class="navbar-item is-size-7">Contact</a>
+                        <a href="#requestaccess" class="navbar-item is-size-7 ls-main-nav--signup">Request Early Access</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="hero-body container">
+            <div class="columns">
+                <div class="column left is-5-desktop">
+                    <h1 class="title is-size-2-mobile is-1 is-spaced has-text-white">
+                        Next-generation database technologies
+                    </h1>
+                    <h2 class="subtitle is-5 has-text-white">
+                        Columno is a novel approach to databases that reduces the learning-curve for developers while drastically improving performance and cost.
+                    </h2><br /><br /><br /><br /><br />
+
+                </div>
+                <div class="column right is-5-desktop is-offset-1-desktop has-text-white">
+                    <div class="ls-banner has-text-white is-marginless">
+                        <span class="tag is-success has-text-info is-size-6-mobile is-size-7">NEW May 2020</span>
+                        <span class="ls-banner--text is-size-5-mobile is-size-6"><a href="#requestaccess" class="has-text-white has-text-weight-bold">Try our public beta-version!</a></span>
+                        <span class="ls-banner--icon"><i aria-hidden="true" class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <h2 class="subtitle is-5 has-text-white is-marginless">
+                        <br />Live comparison between Columno with Amazon DynamoDB and a standard PostgreSQL database.<br /><br />
+                    </h2>
+                    <span>Enter SQL statements: </span>
+
+                    <div class="field">
+                        <div class="control">
+                            <textarea class="textarea is-success" id="statements">SELECT * FROM NyTest WHERE age<10 LIMIT 10;
+SELECT * FROM NyTest WHERE age>10 LIMIT 10;
+SELECT * FROM NyTest WHERE age=10 LIMIT 10;
+SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
+                        </div>
+                    </div>
+                    <a href="#" id="btnExec" onclick="loadDoc();" class="ls-button is button has-text-weight-bold is-success">Execute</a>&nbsp;&nbsp;
+                    <a href="#contact" class="ls-button is-one-third button has-text-weight-bold is-info">New SELECTs</a>&nbsp;&nbsp;
+                    <a href="#contact" class="ls-button button has-text-weight-bold is-info">New INSERTs</a>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+
+        <div class="columns">
+            <div class="column left is-1-desktop"></div>
+            <div class="column left is-4-desktop">
+                <div class="tabs is-toggle">
+                    <ul>
+                        <li class="tablinks is-active" id="li1"><a href="#" onclick="openTab('li1', 'st1result')">Results 1</a></li>
+                        <li class="tablinks" id="li2"><a href="#" onclick="openTab('li2', 'st2result')">Results 2</a></li>
+                        <li class="tablinks" id="li3"><a href="#" onclick="openTab('li3', 'st3result')">Results 3</a></li>
+                        <li class="tablinks" id="li4"><a href="#" onclick="openTab('li4', 'st4result')">Results 4</a></li>
+                    </ul>
+                </div>
+
+                <div id="st1result" class="tabcontent">
+                    <h1 class="title is-size-3-mobile is-3 is-spaced">
+                        Results for statement #1
+                    </h1>
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr id="tableHead1">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody1">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="st2result" class="tabcontent" style="display:none">
+                    <h1 class="title is-size-3-mobile is-3 is-spaced">
+                        Results for statement #2
+                    </h1>
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr id="tableHead2">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody2">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="st3result" class="tabcontent" style="display:none">
+                    <h1 class="title is-size-3-mobile is-3 is-spaced">
+                        Results for statement #3
+                    </h1>
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr id="tableHead3">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody3">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="st4result" class="tabcontent" style="display:none">
+                    <h1 class="title is-size-3-mobile is-3 is-spaced">
+                        Results for statement #4
+                    </h1>
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr id="tableHead4">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody4">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+            <div class="column right is-3-desktop is-offset-1-desktop has-text-white is-marginless">
+                <h1 class="title is-size-3-mobile is-3 is-spaced">
+                    Performance Results
+                </h1>
+                <canvas id="performance"></canvas>
+            </div>
+            <div class="column right is-3-desktop is-offset-1-desktop has-text-white is-marginless">
+                <h1 class="title is-size-3-mobile is-3 is-spaced">
+                    Cost Results
+                </h1>
+                <canvas id="cost"></canvas>
+
+                <script>
+
+
+
+                    var ctx = document.getElementById('performance').getContext('2d');
+                    var myBarChart = new Chart(ctx, {
+                        type: 'bar',
+                        xAxisID: 'test',
+                        data: {
+                            labels: ["Statement 1", "Statement 2", "Statement 3"],
+                            datasets: [
+                                {
+                                    barPercentage: 0.5,
+                                    barThickness: 4,
+                                    maxBarThickness: 8,
+                                    minBarLength: 5,
+                                    label: "Columno",
+                                    backgroundColor: "#3e95cd",
+                                    data: [0,0,0]
+                                },
+                                {
+                                    barPercentage: 0.5,
+                                    barThickness: 4,
+                                    maxBarThickness: 8,
+                                    minBarLength: 5,
+                                    label: "PostgreSQL",
+                                    backgroundColor: "#c45850",
+                                    data: [0,0,0]
+                                }
+                            ]
+                        },
+
+                        options: {
+                            legend: {
+                                display: false
+
+                            },
+                            title: {
+                                //display: true,
+                                //text: 'Performance Results'
+                            }, scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: "milliseconds"
+                                    }
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: false,
+                                        labelString: "Statements"
+                                    }
+                                }]
+                            }
+                        },
+                    });</script>
+                <script>var ctx = document.getElementById('cost').getContext('2d');
+                    var myBarChart2 = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ["Statement 1", "Statement 2", "Statement 3"],
+                            datasets: [
+                                {
+                                    barPercentage: 0.5,
+                                    barThickness: 4,
+                                    maxBarThickness: 8,
+                                    minBarLength: 2,
+                                    label: "Columno (back2back)",
+                                    backgroundColor: "#3e95cd",
+                                    data: []
+                                }, {
+                                    barPercentage: 0.5,
+                                    barThickness: 4,
+                                    maxBarThickness: 8,
+                                    minBarLength: 2,
+                                    label: "Columno (1/sec)",
+                                    backgroundColor: "#3555cd",
+                                    data: []
+                                },
+                                {
+                                    barPercentage: 0.5,
+                                    barThickness: 4,
+                                    maxBarThickness: 8,
+                                    minBarLength: 5,
+                                    label: "PostgreSQL (back2back)",
+                                    backgroundColor: "#d45650",
+                                    data: []
+                                },
+                                {
+                                    barPercentage: 0.5,
+                                    barThickness: 4,
+                                    maxBarThickness: 8,
+                                    minBarLength: 5,
+                                    label: "PostgreSQL (1/sec)",
+                                    backgroundColor: "#c45850",
+                                    data: []
+                                }
+                            ]
+                        },
+
+                        options: {
+                            legend: {
+                                display: false
+
+                            },
+                            title: {
+                                //display: true,
+                                //text: 'Performance Results'
+                            }, scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        //stepSize: 0.,
+                                        beginAtZero: true,
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: "Price/month (USD)"
+                                    }
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: false,
+                                        labelString: "Statements"
+                                    }
+                                }]
+                            }
+                        },
+                    });</script>
+            </div>
+        </div>
+        <br /><br />
+        <hr class="is-marginless" />
+    </section>
+
+
+    <section class="section ls-features-cards" id="whatis">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-desktop is-offset-2-desktop">
+                    <div class="ls-section-content has-text-centered">
+                        <h3 class="title has-text-dark">What is Columno?</h3>
+                        <p class="content has-text-grey is-size-5">
+                            More details will follow soon.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-one-third">
+                    <article class="card ls-feature-card">
+                        <div class="card-content">
+                            <div class="media-content has-text-centered">
+                                <h3 class="title is-5 has-text-weight-bold">
+                                    <a href="/" class="has-text-dark" title="">
+                                        Easy to learn
+                                    </a>
+                                </h3>
+                                <p class="is-size-6">
+                                    By supporting popular standards anyone can use Columno - even by using existing source-code.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="column is-one-third">
+                    <article class="card ls-feature-card">
+                        <div class="card-content">
+                            <div class="media-content has-text-centered">
+                                <h3 class="title is-5 has-text-weight-bold">
+                                    <a href="/" class="has-text-dark" title="">
+                                        Affordable
+                                    </a>
+                                </h3>
+                                <p class="is-size-6">
+                                    With novel indexing- and query processing algorithms we drastically lower the cost - especially for large amounts of data.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="column is-one-third">
+                    <article class="card ls-feature-card">
+                        <div class="card-content">
+                            <div class="media-content has-text-centered">
+                                <h3 class="title is-5 has-text-weight-bold">
+                                    <a href="/" class="has-text-dark" title="">
+                                        Fast Performance
+                                    </a>
+                                </h3>
+                                <p class="is-size-6">
+                                    Columno employs state-of-the-art algorithms that can deliver single-digit millisecond performance at scale.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="section ls-rainbow-gradient" id="requestaccess">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <h3 class="title ls-half-space has-text-white is-3 has-text-bold">Request Early Access</h3>
+                    <p class="has-text-white">Enter your email to request early access to our closed Beta</p>
+                </div>
+                <div class="column is-5 is-offset-2">
+                    <div class="field ls-round-input has-background-white">
+                        <form action="https://columno.us3.list-manage.com/subscribe/post?u=d05306ee2445e5897986ba8ff&amp;id=8d563f0708" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                            <input class="input has-text-grey" type="text" name="EMAIL" placeholder="Enter Your Email">
+                            <button type="submit" class="button is-success">
+                                Request
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-desktop is-offset-2-desktop">
+                    <div class="ls-section-content has-text-centered ls-space-bottom">
+                        <h3 class="title has-text-dark">Contact Us</h3>
+                        <p class="content has-text-grey is-size-5">
+                            Write an e-mail or give us a call
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+
+                <div class="column is-6">
+
+                    <div class="mapouter">
+                        <div class="gmap_canvas"><iframe class="gmap_canvas" src="https://maps.google.com/maps?q=Fiskerivej%202K&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+                    </div>
+                </div>
+
+                <div class="column is-6 ls-info-contact">
+                    <h4 class="title is-6 has-text-dark ls-half-space">Get in Touch</h4>
+                    <p class="content has-text-grey">
+                    </p>
+
+                    <div class="media ls-item-contact">
+                        <a href="mailto:hello@columno.com" class="">Email: hello@columno.com</a>
+                    </div>
+                    <div class="media ls-item-contact">
+                        <a href="tel:004571992132" class="">Phone: +45 7199 2132</a>
+                    </div>
+                    <div class="media ls-item-contact">
+                        <a href="https://www.columno.com">Web: www.columno.com</a>
+                    </div>
+                    <div class="media ls-item-contact">
+                        <div class="media-left">
+                            <img src="img/Columno_silo.png" />
+                        </div>
+                        Columno ApS<br />
+                        Fiskerivej 2K, 1<br />
+                        8000 Aarhus C
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <footer class="footer  has-background-primary">
+        <div class="container">
+            <div class="columns has-text-centered-mobile">
+                <div class="column is-4">
+                    <img class="ls-space" src="img/Columno_300.png" title="Columno" width="300">
+                    <p class="has-text-white">
+                        Columno is a deep tech startup building the next-generation database technologies.
+                    </p>
+                </div>
+            </div>
+            <div class="columns ls-footer">
+                <div class="column is-5 is-marginless has-text-centered-mobile content has-text-white">
+                    <p>Copyright 2019 &copy; Columno.com</p>
+                </div>
+                <div class="column is-7">
+                    <ul class="columns ls-bottom-links is-mobile is-multiline is-marginless">
+                        <li class="ls-bottom-link"><a href="/">Home</a></li>
+                        <li class="ls-bottom-link"><a href="#whatis">What is Columno?</a></li>
+                        <li class="ls-bottom-link"><a href="#contact">Contact</a></li>
+                        <li class="ls-bottom-link"><a href="#requestaccess">Request Early Access</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="js/main.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152732193-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-152732193-1');</script>
+
+</body>
+</html>

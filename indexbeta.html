@@ -57,7 +57,6 @@
 
         function loadDoc() {
             document.getElementById("btnExec").classList.add("is-loading");
-
             removeData(myBarChart);
             removeData(myBarChart);
             removeData(myBarChart);
@@ -66,53 +65,52 @@
             removeData(myBarChart2);
             removeData(myBarChart2);
             removeData(myBarChart2);
-            var i = 1;
-            executeStmt(document.getElementById("statements").value, i);
-            document.getElementById("statements").value.split("\n").forEach(function (v) {
-                
-            });
+            var i = 0;
+            executeStmt("SELECT * FROM WarmupCon;\n" + document.getElementById("statements").value, i);
             document.getElementById("btnExec").classList.remove("is-loading");
         }
+
+
         function executeStmt(stmt, stmtid) {
             var xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + stmt.split("\n")[stmtid-1], true);
+            xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + stmt.split("\n")[stmtid], true);
             xhttp.onload = function () {
-                
+
                 var jsonResponse = xhttp.response;
                 myObj = JSON.parse(jsonResponse);
                 var txt = ""
                 var headtxt = "<td>id</td>";
                 var i = 0;
 
-                
-                addData(myBarChart, "Statement " + stmtid, [myObj.ColumnoStats, myObj.PostgreStats]);
+                if (stmtid > 0) {
+                    addData(myBarChart, "Statement " + stmtid, [myObj.ColumnoStats, myObj.PostgreStats]);
 
                 
-                addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 37.2, 37.2]);
+                    addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 37.2, 37.2]);
 
-//                addData(myBarChart, "Statement 1", myObj.PostgreStats);
-                for (x in myObj.Data) {
-                    if (i == 0) {
-                        /*<tr>
-                            <th><abbr title="Position">Pos</abbr></th>
-                            <th>Name</th>
-                            <th><abbr title="Age">Age</abbr></th>
-                        </tr>*/
-                        //alert(Object.keys(myObj[x]));
+    //                addData(myBarChart, "Statement 1", myObj.PostgreStats);
+                    for (x in myObj.Data) {
+                        if (i == 0) {
+                            /*<tr>
+                                <th><abbr title="Position">Pos</abbr></th>
+                                <th>Name</th>
+                                <th><abbr title="Age">Age</abbr></th>
+                            </tr>*/
+                            //alert(Object.keys(myObj[x]));
 
-                        for (y in Object.keys(myObj.Data[x])) {
-                            headtxt += "<td>" + Object.keys(myObj.Data[x])[y] + "</td>";
+                            for (y in Object.keys(myObj.Data[x])) {
+                                headtxt += "<td>" + Object.keys(myObj.Data[x])[y] + "</td>";
+                            }
                         }
+                        i++;
+                        txt += "<tr><td>" + i + "</td><td>" + myObj.Data[x].name + "</td><td>" + myObj.Data[x].age + "</td></tr>";
                     }
-                    i++;
-                    txt += "<tr><td>" + i + "</td><td>" + myObj.Data[x].name + "</td><td>" + myObj.Data[x].age + "</td></tr>";
+
+                    document.getElementById("tableBody" + stmtid).innerHTML = txt;
+                    document.getElementById("tableHead" + stmtid).innerHTML = headtxt;
                 }
-
-                document.getElementById("tableBody" + stmtid).innerHTML = txt;
-                document.getElementById("tableHead" + stmtid).innerHTML = headtxt;
-
                 stmtid++;
-                if (stmtid <= stmt.split("\n").length) {
+                if (stmtid < stmt.split("\n").length) {
                     executeStmt(stmt, stmtid);
                 }
             };

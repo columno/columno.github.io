@@ -68,7 +68,7 @@
                 while (randAgeBig - 1 > randAgeSmaller + 1) {
                     randAgeSmaller = Math.floor(Math.random() * 150);
                 }
-                returnV += stmts[i].replace(/CLMNOAGESMALLER/gm, randAgeSmaller).replace(/CLMNOAGE2/gm, randAgeBig).replace(/CLMNOAGE/gm, Math.floor(Math.random() * 150)) + "\n";
+                returnV += stmts[i].replace(/CLMNOAGESMALLER/gm, randAgeSmaller).replace(/CLMNOAGE2/gm, Math.floor(Math.random() * 150)).replace(/CLMNOAGE/gm, randAgeBig) + "\n";
             }
 
             document.getElementById("statements").value = returnV.replace(/\n$/, "");

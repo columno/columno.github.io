@@ -16,7 +16,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 </head>
-<body>
+<body onload="getNewSelects()">
 
     <script>
         function addData(chart, label, data) {
@@ -56,6 +56,24 @@
             chart.update();
         }
 
+        function getNewSelects() {
+            var stmts = ["SELECT * FROM NyTest WHERE age<CLMNOAGESMALLER AND age>CLMNOAGE LIMIT 5;", "SELECT * FROM NyTest WHERE age>CLMNOAGE LIMIT 10;",
+                "SELECT * FROM NyTest WHERE age=CLMNOAGE OR age=CLMNOAGE2 LIMIT 5;", "SELECT * FROM NyTest WHERE age>CLMNOAGE LIMIT 10;"];
+            
+            var returnV = "";
+            var i;
+            for (i = 0; i < stmts.length; i++) {
+                var randAgeBig = Math.floor(Math.random() * 150);
+                var randAgeSmaller = Math.floor(Math.random() * 150);
+                while (randAgeBig - 1 > randAgeSmaller + 1) {
+                    randAgeSmaller = Math.floor(Math.random() * 150);
+                }
+                returnV += stmts[i].replace(/CLMNOAGESMALLER/gm, randAgeSmaller).replace(/CLMNOAGE2/gm, randAgeBig).replace(/CLMNOAGE/gm, Math.floor(Math.random() * 150)) + "\n";
+            }
+
+            document.getElementById("statements").value = returnV.replace(/\n$/, "");
+        }
+
         function openTab(evt, nm) {
             var i, tabcontent, tablinks;
 
@@ -82,6 +100,7 @@
         var columnoms = 0;
         var postgresms = 0;
         function loadDoc() {
+            
             document.getElementById("badsql").classList.add('is-hidden')
             columnoms = 0;
             postgresms = 0;
@@ -256,19 +275,16 @@
 
                     <div class="field">
                         <div class="control">
-                            <textarea class="textarea is-success" id="statements">SELECT * FROM NyTest WHERE age<10 AND age>2 LIMIT 5;
-SELECT * FROM NyTest WHERE age>10 LIMIT 10;
-SELECT * FROM NyTest WHERE age=10 OR age=51 LIMIT 5;
-SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
+                            <textarea  class="textarea is-success" id="statements"></textarea>
                         </div>
                     </div>
                     <a href="#" id="btnExec" onclick="loadDoc();return false;" class="ls-button is button has-text-weight-bold is-success">
                         <i class="fas fa-play"></i>&nbsp;Execute
                     </a>&nbsp;&nbsp;
-                    <a href="#contact" class="ls-button is-one-third button has-text-weight-bold is-info">
+                    <a href="#" onclick="getNewSelects(); return false;" class="ls-button is-one-third button has-text-weight-bold is-info">
                         <i class="fas fa-list"></i>&nbsp;New SELECTs
                     </a>&nbsp;&nbsp;
-                    <a href="#contact" class="ls-button button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New INSERTs</a>
+                    <a href="#" class="ls-button button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New INSERTs</a>
 
                     <div class="notification is-danger is-hidden" id="badsql">
                         <button class="delete" onclick="document.getElementById('badsql').classList.remove('is-hidden'); return false;"></button>

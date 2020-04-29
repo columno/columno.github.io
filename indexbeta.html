@@ -8,7 +8,7 @@
     <title>Columno - Next-generation database technologies</title>
     <link href="css/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
+    <link href="css/all.min.css" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
@@ -66,14 +66,15 @@
             removeData(myBarChart2);
             removeData(myBarChart2);
             var i = 0;
-            executeStmt("SELECT * FROM NyTest WHERE name='WarmUpCons';\n" + document.getElementById("statements").value, i);
+            executeStmt(document.getElementById("statements").value, i);
             document.getElementById("btnExec").classList.remove("is-loading");
         }
 
 
         function executeStmt(stmt, stmtid) {
             var xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + stmt.split("\n")[stmtid], true);
+           
+            xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + stmt.split("\n")[stmtid == 0 ? 1 : stmtid-1], true);
             xhttp.onload = function () {
 
                 var jsonResponse = xhttp.response;
@@ -110,7 +111,7 @@
                     document.getElementById("tableHead" + stmtid).innerHTML = headtxt;
                 }
                 stmtid++;
-                if (stmtid < stmt.split("\n").length) {
+                if (stmtid <= stmt.split("\n").length) {
                     executeStmt(stmt, stmtid);
                 }
             };
@@ -154,15 +155,36 @@
                         Next-generation database technologies
                     </h1>
                     <h2 class="subtitle is-5 has-text-white">
-                        Columno is a novel approach to databases that reduces the learning-curve for developers while drastically improving performance and cost.
-                    </h2><br /><br /><br /><br /><br />
-
+                        Columno is a novel approach to databases that reduces the learning-curve for developers while drastically improving performance and cost.<br />
+                    </h2>
+                    <h1 class="title is-size-4-mobile is-3 is-spaced has-text-white">
+                        Download Columno Beta v. 0.1<br />
+                        <button class="button is-medium has-text-weight-bold is-success">
+                            <span class="icon is-medium">
+                                <i class="fab fa-windows"></i>
+                            </span>
+                            <span>Windows</span>
+                        </button>
+                        <button class="button is-medium has-text-weight-bold is-success">
+                            <span class="icon is-medium">
+                                <i class="fab fa-ubuntu"></i>
+                            </span>
+                            <span>Linux</span>
+                        </button>
+                        <button class="button is-medium has-text-weight-bold is-success">
+                            <span class="icon is-medium">
+                                <i class="fab fa-apple"></i>
+                            </span>
+                            <span>Mac</span>
+                        </button>
+                    </h1>
+                    <br />
+                    <br />
                 </div>
                 <div class="column right is-5-desktop is-offset-1-desktop has-text-white">
                     <div class="ls-banner has-text-white is-marginless">
                         <span class="tag is-success has-text-info is-size-6-mobile is-size-7">NEW May 2020</span>
-                        <span class="ls-banner--text is-size-5-mobile is-size-6"><a href="#requestaccess" class="has-text-white has-text-weight-bold">Try our public beta-version!</a></span>
-                        <span class="ls-banner--icon"><i aria-hidden="true" class="fas fa-chevron-right"></i></span>
+                        <span class="ls-banner--text is-size-5-mobile is-size-6"><a href="#requestaccess" class="has-text-white has-text-weight-bold">Try our public beta-version v. 0.1!</a></span>
                     </div>
                     <h2 class="subtitle is-5 has-text-white is-marginless">
                         <br />Live comparison between Columno with Amazon DynamoDB and a standard PostgreSQL database.<br /><br />
@@ -177,9 +199,11 @@ SELECT * FROM NyTest WHERE age=10 OR age=51 LIMIT 5;
 SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
                         </div>
                     </div>
-                    <a href="#" id="btnExec" onclick="loadDoc();return false;" class="ls-button is button has-text-weight-bold is-success">Execute</a>&nbsp;&nbsp;
-                    <a href="#contact" class="ls-button is-one-third button has-text-weight-bold is-info">New SELECTs</a>&nbsp;&nbsp;
-                    <a href="#contact" class="ls-button button has-text-weight-bold is-info">New INSERTs</a>
+                    <a href="#" id="btnExec" onclick="loadDoc();return false;" class="ls-button is button has-text-weight-bold is-success"><i class="fas fa-play"></i>&nbsp;Execute
+                    </a>&nbsp;&nbsp;
+                    <a href="#contact" class="ls-button is-one-third button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New SELECTs
+                    </a>&nbsp;&nbsp;
+                    <a href="#contact" class="ls-button button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New INSERTs</a>
 
 
                 </div>

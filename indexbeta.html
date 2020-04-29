@@ -307,7 +307,7 @@
 
         <div class="columns">
             <div class="column left is-1-desktop"></div>
-            <div class="column left is-6-desktop is-offset-1-desktop has-text-white is-marginless">
+            <div class="column left is-6-desktop is-offset-1-desktop     is-marginless">
 
                 <h1 class="title is-size-3-mobile is-3 is-spaced">
                     Columno Beta vs PostgreSQL
@@ -320,18 +320,19 @@
                     <a href="#">How is this possible?</a>
                 </h2>
                 <div class="columns">
-                    <div class="column left is-6-desktop is-offset-1-desktop has-text-white is-marginless">
+                    <div class="column left is-6-desktop is-offset-1-desktop is-marginless">
                         <h1 class="title is-size-3-mobile is-3 is-spaced">
                             Performance Results
                         </h1>
                         <canvas id="performance"></canvas>
+                        <span class="bd-color" style="background: #3e95cd;"></span> Columno (back-to-back) &nbsp; <span class="bd-color" style="background: #c45850;"></span> PostgreSQL
                     </div>
-                    <div class="column left is-6-desktop is-offset-1-desktop has-text-white is-marginless">
+                    <div class="column left is-6-desktop is-offset-1-desktop is-marginless">
                         <h1 class="title is-size-3-mobile is-3 is-spaced">
                             Cost Results
                         </h1>
                         <canvas id="cost"></canvas>
-
+                        &nbsp; <span class="bd-color" style="background: #377fea;"></span> Columno (1 query/sec)
                         <script>var ctx = document.getElementById('performance').getContext('2d');
                             var myBarChart = new Chart(ctx, {
                                 type: 'bar',
@@ -407,7 +408,7 @@
                                             maxBarThickness: 8,
                                             minBarLength: 2,
                                             label: "Columno (1/sec)",
-                                            backgroundColor: "#3555cd",
+                                            backgroundColor: "#377fea",
                                             data: []
                                         },
                                         {
@@ -416,7 +417,7 @@
                                             maxBarThickness: 8,
                                             minBarLength: 5,
                                             label: "PostgreSQL (back2back)",
-                                            backgroundColor: "#d45650",
+                                            backgroundColor: "#c45850",
                                             data: []
                                         },
                                         {
@@ -460,6 +461,7 @@
                                 },
                             });</script>
                     </div>
+                    
                 </div>
                 </div>
                 <div class="column right is-4-desktop">

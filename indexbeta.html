@@ -216,75 +216,6 @@ SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
 
         <div class="columns">
             <div class="column left is-1-desktop"></div>
-            <div class="column left is-4-desktop">
-                <div class="tabs is-toggle">
-                    <ul>
-                        <li class="tablinks is-active" id="li1"><a href="#" onclick="openTab('li1', 'st1result'); return false;">Results 1</a></li>
-                        <li class="tablinks" id="li2"><a href="#" onclick="openTab('li2', 'st2result'); return false;">Results 2</a></li>
-                        <li class="tablinks" id="li3"><a href="#" onclick="openTab('li3', 'st3result'); return false;">Results 3</a></li>
-                        <li class="tablinks" id="li4"><a href="#" onclick="openTab('li4', 'st4result'); return false;">Results 4</a></li>
-                    </ul>
-                </div>
-
-                <div id="st1result" class="tabcontent">
-                    <h1 class="title is-size-3-mobile is-3 is-spaced">
-                        Results for statement #1
-                    </h1>
-                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-                        <thead>
-                            <tr id="tableHead1">
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody1">
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="st2result" class="tabcontent" style="display:none">
-                    <h1 class="title is-size-3-mobile is-3 is-spaced">
-                        Results for statement #2
-                    </h1>
-                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-                        <thead>
-                            <tr id="tableHead2">
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody2">
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="st3result" class="tabcontent" style="display:none">
-                    <h1 class="title is-size-3-mobile is-3 is-spaced">
-                        Results for statement #3
-                    </h1>
-                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-                        <thead>
-                            <tr id="tableHead3">
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody3">
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="st4result" class="tabcontent" style="display:none">
-                    <h1 class="title is-size-3-mobile is-3 is-spaced">
-                        Results for statement #4
-                    </h1>
-                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-                        <thead>
-                            <tr id="tableHead4">
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody4">
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-
-
             <div class="column right is-3-desktop is-offset-1-desktop has-text-white is-marginless">
                 <h1 class="title is-size-3-mobile is-3 is-spaced">
                     Performance Results
@@ -297,11 +228,7 @@ SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
                 </h1>
                 <canvas id="cost"></canvas>
 
-                <script>
-
-
-
-                    var ctx = document.getElementById('performance').getContext('2d');
+                <script>var ctx = document.getElementById('performance').getContext('2d');
                     var myBarChart = new Chart(ctx, {
                         type: 'bar',
                         xAxisID: 'test',
@@ -315,7 +242,7 @@ SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
                                     minBarLength: 5,
                                     label: "Columno",
                                     backgroundColor: "#3e95cd",
-                                    data: [0,0,0]
+                                    data: [0, 0, 0]
                                 },
                                 {
                                     barPercentage: 0.5,
@@ -324,7 +251,7 @@ SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
                                     minBarLength: 5,
                                     label: "PostgreSQL",
                                     backgroundColor: "#c45850",
-                                    data: [0,0,0]
+                                    data: [0, 0, 0]
                                 }
                             ]
                         },
@@ -428,6 +355,68 @@ SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
                             }
                         },
                     });</script>
+            </div>
+            <div class="column left is-4-desktop">
+                <h1 class="title is-size-3-mobile is-3 is-spaced">
+                    Results
+                </h1>
+                <div class="tabs is-toggle">
+                    <ul>
+                        <li class="tablinks is-active" id="li1"><a href="#" onclick="openTab('li1', 'st1result'); return false;">Statement 1</a></li>
+                        <li class="tablinks" id="li2"><a href="#" onclick="openTab('li2', 'st2result'); return false;">Statement 2</a></li>
+                        <li class="tablinks" id="li3"><a href="#" onclick="openTab('li3', 'st3result'); return false;">Statement 3</a></li>
+                        <li class="tablinks" id="li4"><a href="#" onclick="openTab('li4', 'st4result'); return false;">Statement 4</a></li>
+                    </ul>
+                </div>
+
+                <div id="st1result" class="tabcontent">
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr id="tableHead1">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody1">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="st2result" class="tabcontent" style="display:none">
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr id="tableHead2">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody2">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="st3result" class="tabcontent" style="display:none">
+
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr id="tableHead3">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody3">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="st4result" class="tabcontent" style="display:none">
+                    <h1 class="title is-size-3-mobile is-3 is-spaced">
+                        Results for statement #4
+                    </h1>
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr id="tableHead4">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody4">
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
         <br /><br />

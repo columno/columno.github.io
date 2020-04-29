@@ -30,10 +30,29 @@
         }
 
         function removeData(chart) {
-            chart.data.labels.pop();
+            while (chart.data.labels.length > 0) {
+                chart.data.labels.pop();
+            }
             chart.data.datasets.forEach((dataset) => {
-                dataset.data.pop();
+                while (dataset.data.length > 0) { 
+                    dataset.data.pop();
+                }
+                
             });
+
+            chart.options.scales = {
+                
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: chart.options.scales.yAxes[0].scaleLabel.labelString
+                    }
+                    
+                }]
+            };
             chart.update();
         }
 
@@ -58,12 +77,6 @@
         function loadDoc() {
             document.getElementById("btnExec").classList.add("is-loading");
             removeData(myBarChart);
-            removeData(myBarChart);
-            removeData(myBarChart);
-            removeData(myBarChart);
-            removeData(myBarChart2);
-            removeData(myBarChart2);
-            removeData(myBarChart2);
             removeData(myBarChart2);
             var i = 0;
             executeStmt(document.getElementById("statements").value, i);
@@ -159,7 +172,7 @@
                     </h2>
                     <h1 class="title is-size-4-mobile is-3 is-spaced has-text-white">
                         Download Columno Beta v. 0.1<br />
-                            <a href="#" class="ls-button button is-medium has-text-weight-bold is-success">
+                            <a href="#" class="ls-button button is-medium has-text-weight-bold is-success ">
                                 <span class="icon is-medium">
                                     <i class="fab fa-windows"></i>
                                 </span>
@@ -242,7 +255,7 @@ SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
                                     minBarLength: 5,
                                     label: "Columno",
                                     backgroundColor: "#3e95cd",
-                                    data: [0, 0, 0]
+                                    data: []
                                 },
                                 {
                                     barPercentage: 0.5,
@@ -251,7 +264,7 @@ SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
                                     minBarLength: 5,
                                     label: "PostgreSQL",
                                     backgroundColor: "#c45850",
-                                    data: [0, 0, 0]
+                                    data: []
                                 }
                             ]
                         },

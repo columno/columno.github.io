@@ -74,12 +74,37 @@
             document.getElementById(evt).classList.add("is-active");
         }
 
+        function setBadsqlmsg(msg) {
+            document.getElementById("badsqlmsg").innerHTML = msg;
+
+            document.getElementById('badsql').style.display = 'block';
+        }
+
         function loadDoc() {
+            document.getElementById('badsql').style.display = 'none';
+            var stmt = document.getElementById("statements").value;
+            if (stmt.split("\n").length > 4) {
+                setBadsqlmsg("<i class='fas fa-flushed'></i> Please only test with up to 4 statements in this demo of our beta. If you want to go crazy, please download our beta.");
+                return;
+            }
+            for (v in stmt.split("\n")) {
+
+                if (stmt.split("\n")[v].toLowerCase().startsWith("drop")) {
+
+                    setBadsqlmsg("<i class='is-large fas fa-dizzy'></i> That almost ended in a nightmare for us.. please don't DROP our tables.");
+                    return;
+                }
+                if (stmt.split("\n")[v].toLowerCase().startsWith("delete")) {
+
+                    setBadsqlmsg("<i class='is-large fas fa-sad-tear'></i> Sorry, we can't DELETE yet.. check out our timeline to see when we expect that to be supported.");
+                    return;
+                }
+            }
             document.getElementById("btnExec").classList.add("is-loading");
             removeData(myBarChart);
             removeData(myBarChart2);
             var i = 0;
-            executeStmt(document.getElementById("statements").value, i);
+            executeStmt(stmt, i);
             document.getElementById("btnExec").classList.remove("is-loading");
         }
 
@@ -103,6 +128,10 @@
                     addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 37.2, 37.2]);
 
     //                addData(myBarChart, "Statement 1", myObj.PostgreStats);
+                    if (myObj.Data == null) {
+                        setBadsqlmsg("<i class='fas fa-surprise'></i> We don't understand a thing of that SQL. Can you forgive us if we tell you that we are still in Beta 0.1? <i class='fas fa-grin-beam-sweat'></i>");
+
+                    }
                     for (x in myObj.Data) {
                         if (i == 0) {
                             /*<tr>
@@ -129,8 +158,8 @@
                 }
             };
             xhttp.onerror = function () {
-                
-
+                setBadsqlmsg("<i class='fas fa-surprise'></i> We don't understand a thing of that SQL. Can you forgive us if we tell you that we are still in Beta 0.1? <i class='fas fa-grin-beam-sweat'></i>");
+                return;
             }
             xhttp.send();
             }
@@ -212,13 +241,19 @@ SELECT * FROM NyTest WHERE age=10 OR age=51 LIMIT 5;
 SELECT * FROM NyTest WHERE age>50 LIMIT 10;</textarea>
                         </div>
                     </div>
-                    <a href="#" id="btnExec" onclick="loadDoc();return false;" class="ls-button is button has-text-weight-bold is-success"><i class="fas fa-play"></i>&nbsp;Execute
+                    <a href="#" id="btnExec" onclick="loadDoc();return false;" class="ls-button is button has-text-weight-bold is-success">
+                        <i class="fas fa-play"></i>&nbsp;Execute
                     </a>&nbsp;&nbsp;
-                    <a href="#contact" class="ls-button is-one-third button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New SELECTs
+                    <a href="#contact" class="ls-button is-one-third button has-text-weight-bold is-info">
+                        <i class="fas fa-list"></i>&nbsp;New SELECTs
                     </a>&nbsp;&nbsp;
                     <a href="#contact" class="ls-button button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New INSERTs</a>
 
+                    <div class="notification is-danger" style="display:none" id="badsql">
+                        <button class="delete" onclick="document.getElementById('badsql').style.display = 'none'; return false;"></button>
+                        <span id="badsqlmsg"></span>
 
+                    </div>
                 </div>
             </div>
 

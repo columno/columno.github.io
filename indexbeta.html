@@ -197,8 +197,9 @@
                     executeStmt(stmt, stmtid);
                 } else {
                     // Last statement
+                    
                     document.getElementById("avgms").innerText = Math.abs((columnoms / stmt.split("\n").length) - (postgresms / stmt.split("\n").length));
-                    document.getElementById("avgcost").innerText = Math.round((1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31 * 100)/100;
+                    document.getElementById("avgcost").innerText = Math.round((1000 / (columnoms / stmt.split("\n").length)) * (0.000147 / 2) * 24 * 31 * 100)/100;
                     document.getElementById("btnExec").classList.remove("is-loading");
                 }
             };

@@ -165,7 +165,7 @@
 
                     columnoms += myObj.ColumnoStats;
                     postgresms += myObj.PostgreStats;
-                    addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 37.2, 37.2]);
+                    addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 37.2]);
 
     //                addData(myBarChart, "Statement 1", myObj.PostgreStats);
                     if (myObj.Data == null) {
@@ -417,16 +417,7 @@
                                             barThickness: 4,
                                             maxBarThickness: 8,
                                             minBarLength: 5,
-                                            label: "PostgreSQL (back2back)",
-                                            backgroundColor: "#c45850",
-                                            data: []
-                                        },
-                                        {
-                                            barPercentage: 0.5,
-                                            barThickness: 4,
-                                            maxBarThickness: 8,
-                                            minBarLength: 5,
-                                            label: "PostgreSQL (1/sec)",
+                                            label: "PostgreSQL",
                                             backgroundColor: "#c45850",
                                             data: []
                                         }

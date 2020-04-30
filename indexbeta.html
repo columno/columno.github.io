@@ -186,7 +186,11 @@
                             }
                         }
                         i++;
-                        txt += "<tr><td>" + i + "</td><td>" + myObj.Data[x].name + "</td><td>" + myObj.Data[x].age + "</td></tr>";
+                        txt += "<tr><td>" + i + "</td>";
+                        for (y in Object.keys(myObj.Data[x])) {
+                            txt += "<td>" + myObj.Data[x][Object.keys(myObj.Data[x])[y]] + "</td>";
+                        }
+                        txt += "</tr>";
                     }
 
                     document.getElementById("tableBody" + stmtid).innerHTML = txt;

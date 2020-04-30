@@ -58,7 +58,7 @@
 
         function getNewSelects() {
             var stmts = ["SELECT * FROM NyTest WHERE age<CLMNOAGE AND age>CLMNOAGESMALLER LIMIT CLMNOLIMIT;", "SELECT * FROM NyTest WHERE age>CLMNOAGE LIMIT CLMNOLIMIT;",
-                "SELECT * FROM NyTest WHERE age=CLMNOAGE OR age=CLMNOAGE2 LIMIT CLMNOLIMIT;", "SELECT * FROM NyTest WHERE age>CLMNOAGE LIMIT CLMNOLIMIT;"];
+                "SELECT * FROM NyTest WHERE age=CLMNOAGE OR age=CLMNOAGE2 LIMIT CLMNOLIMIT;", "SELECT * FROM NyTest INNER JOIN Customers ON NyTest.name=Customers.ContactName WHERE age=123 LIMIT 10;"];
             
             var returnV = "";
             var i;

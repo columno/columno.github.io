@@ -74,10 +74,10 @@
                 returnV += stmts[i].replace(/CLMNOAGESMALLER/gm, randAgeSmaller)
                     .replace(/CLMNOAGE2/gm, Math.floor(Math.random() * 150))
                     .replace(/CLMNOAGE/gm, randAgeBig)
-                    .replace(/CLMNOLIMIT/gm, limit) + "\r\n";
+                    .replace(/CLMNOLIMIT/gm, limit) + "\n";
             }
 
-            document.getElementById("statements").value = returnV.replace(/\r\n$/, "");
+            document.getElementById("statements").value = returnV.replace(/\n$/, "");
         }
 
         function openTab(evt, nm) {
@@ -282,7 +282,7 @@
 
                     <div class="field">
                         <div class="control">
-                            <textarea  class="textarea is-success" id="statements" wrap="soft" style="white-space: nowrap;  overflow: auto;"></textarea>
+                            <textarea  class="textarea is-success" id="statements"  style="white-space: nowrap;  overflow: auto;"></textarea>
                         </div>
                     </div>
                     <a href="#" id="btnExec" onclick="loadDoc();gtag('event','click',{'event_category':'betademo','event_label':'execute'});return false;" class="ls-button is button has-text-weight-bold is-success">

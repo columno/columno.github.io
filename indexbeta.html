@@ -57,8 +57,8 @@
         }
 
         function getNewSelects() {
-            var stmts = ["SELECT * FROM NyTest WHERE age<CLMNOAGE AND age>CLMNOAGESMALLER LIMIT CLMNOLIMIT;", "SELECT * FROM NyTest WHERE age>CLMNOAGE LIMIT CLMNOLIMIT;",
-                "SELECT * FROM NyTest WHERE age=CLMNOAGE OR age=CLMNOAGE2 LIMIT CLMNOLIMIT;", "SELECT * FROM NyTest INNER JOIN Customers ON NyTest.name=Customers.ContactName WHERE age=123 LIMIT 10;"];
+            var stmts = ["SELECT * FROM NyTest WHERE age>CLMNOAGE LIMIT CLMNOLIMIT;", "INSERT INTO NyTest (name, age) VALUES ('TestName', CLMNOAGE);",
+                "SELECT * FROM NyTest WHERE age=CLMNOAGE OR age>CLMNOAGE2 LIMIT CLMNOLIMIT;", "SELECT * FROM NyTest INNER JOIN Customers ON NyTest.name=Customers.ContactName WHERE age=123 LIMIT 10;"];
             
             var returnV = "";
             var i;
@@ -154,14 +154,15 @@
 
         function executeStmt(stmt, stmtid) {
             var xhttp = new XMLHttpRequest();
-           
-            xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + stmt.split("\n")[stmtid == 0 ? 0 : stmtid-1], true);
+            var curStmt = stmt.split("\n")[stmtid == 0 ? 0 : stmtid - 1];
+            var isSelect = curStmt.toLowerCase().startsWith("select");
+            xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + curStmt, true);
             xhttp.onload = function () {
 
                 var jsonResponse = xhttp.response;
                 myObj = JSON.parse(jsonResponse);
                 var txt = ""
-                var headtxt = "<td>id</td>";
+                var headtxt = "";
                 var i = 0;
 
                 if (stmtid > 0) {
@@ -172,28 +173,34 @@
                     addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 37.2]);
 
     //                addData(myBarChart, "Statement 1", myObj.PostgreStats);
-                    if (myObj.Data == null) {
+                    if (myObj.Data == null && isSelect) {
                         setBadsqlmsg("<i class='fas fa-surprise'></i> We don't understand a thing of that SQL. Can you forgive us if we tell you that we are still in Beta 0.1? <i class='fas fa-grin-beam-sweat'></i>");
 
                     }
-                    for (x in myObj.Data) {
-                        if (i == 0) {
-                            /*<tr>
-                                <th><abbr title="Position">Pos</abbr></th>
-                                <th>Name</th>
-                                <th><abbr title="Age">Age</abbr></th>
-                            </tr>*/
-                            //alert(Object.keys(myObj[x]));
+                    if (isSelect) {
+                        for (x in myObj.Data) {
+                            if (i == 0) {
+                                /*<tr>
+                                    <th><abbr title="Position">Pos</abbr></th>
+                                    <th>Name</th>
+                                    <th><abbr title="Age">Age</abbr></th>
+                                </tr>*/
+                                //alert(Object.keys(myObj[x]));
 
-                            for (y in Object.keys(myObj.Data[x])) {
-                                headtxt += "<td>" + Object.keys(myObj.Data[x])[y] + "</td>";
+                                for (y in Object.keys(myObj.Data[x])) {
+                                    headtxt += "<td>" + Object.keys(myObj.Data[x])[y] + "</td>";
+                                }
                             }
+                            i++;
+                            //txt += "<tr><td>" + i + "</td>";
+                            for (y in Object.keys(myObj.Data[x])) {
+                                txt += "<td>" + myObj.Data[x][Object.keys(myObj.Data[x])[y]] + "</td>";
+                            }
+                            txt += "</tr>";
                         }
-                        i++;
-                        txt += "<tr><td>" + i + "</td>";
-                        for (y in Object.keys(myObj.Data[x])) {
-                            txt += "<td>" + myObj.Data[x][Object.keys(myObj.Data[x])[y]] + "</td>";
-                        }
+                    } else {
+                        txt += "<td>Inserted</td>";
+                        
                         txt += "</tr>";
                     }
 

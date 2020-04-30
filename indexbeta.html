@@ -106,7 +106,11 @@
         var columnoms = 0;
         var postgresms = 0;
         function loadDoc() {
-            
+
+            openTab('li1', 'st1result');
+            document.getElementById("li2").classList.add("is-hidden");
+            document.getElementById("li3").classList.add("is-hidden");
+            document.getElementById("li4").classList.add("is-hidden");
             document.getElementById("badsql").classList.add('is-hidden')
             columnoms = 0;
             postgresms = 0;
@@ -195,6 +199,8 @@
 
                     document.getElementById("tableBody" + stmtid).innerHTML = txt;
                     document.getElementById("tableHead" + stmtid).innerHTML = headtxt;
+
+                    document.getElementById("li" + stmtid).classList.remove("is-hidden");
                 }
                 stmtid++;
                 if (stmtid <= stmt.split("\n").length) {
@@ -202,7 +208,7 @@
                 } else {
                     // Last statement
                     
-                    document.getElementById("avgms").innerText = Math.abs((columnoms / stmt.split("\n").length) - (postgresms / stmt.split("\n").length));
+                    document.getElementById("avgms").innerText = Math.round(Math.abs((columnoms / stmt.split("\n").length) - (postgresms / stmt.split("\n").length))*100)/100;
                     document.getElementById("avgcost").innerText = Math.round((1000 / (columnoms / stmt.split("\n").length)) * (0.000147 / 2) * 24 * 31 * 100)/100;
                     document.getElementById("btnExec").classList.remove("is-loading");
                 }
@@ -467,9 +473,9 @@
                     <div class="tabs is-toggle">
                         <ul>
                             <li class="tablinks is-active" id="li1"><a href="#" onclick="openTab('li1', 'st1result'); return false;">Statement 1</a></li>
-                            <li class="tablinks" id="li2"><a href="#" onclick="openTab('li2', 'st2result'); return false;">Statement 2</a></li>
-                            <li class="tablinks" id="li3"><a href="#" onclick="openTab('li3', 'st3result'); return false;">Statement 3</a></li>
-                            <li class="tablinks" id="li4"><a href="#" onclick="openTab('li4', 'st4result'); return false;">Statement 4</a></li>
+                            <li class="tablinks id-hidden" id="li2"><a href="#" onclick="openTab('li2', 'st2result'); return false;">Statement 2</a></li>
+                            <li class="tablinks id-hidden" id="li3"><a href="#" onclick="openTab('li3', 'st3result'); return false;">Statement 3</a></li>
+                            <li class="tablinks id-hidden" id="li4"><a href="#" onclick="openTab('li4', 'st4result'); return false;">Statement 4</a></li>
                         </ul>
                     </div>
 

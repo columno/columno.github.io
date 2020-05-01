@@ -248,6 +248,7 @@
             if (myObj.token != "Invalid login") {
                 localStorage.setItem("token", token);
                 document.getElementById('loginBox').classList.add('is-hidden');
+                document.getElementById('loginBoxDl').classList.add('is-hidden');
                 document.getElementById('loggedinas').innerText = "You are logged in.";
                 document.getElementById("loginheaderbox").classList.remove('is-hidden')
             } else {
@@ -332,26 +333,63 @@
                     </h2>
                     <h1 class="title is-size-4-mobile is-3 is-spaced has-text-white">
                         Download Columno Beta v. 0.1<br />
-                            <a href="binaries/Columno-0.1.0-win64.exe" onclick="gtag('event','download',{'event_category':'beta01','event_label':'windows'});" class="ls-button button is-medium has-text-weight-bold is-success ">
-                                <span class="icon is-medium">
-                                    <i class="fab fa-windows"></i>
-                                </span>
-                                <span>Windows</span>
-                                </a>
-                                <a href="binaries/Columno-0.1.0-linux.tar.gz" onclick="gtag('event','download',{'event_category':'beta01','event_label':'linux'});" class="ls-button button is-medium has-text-weight-bold is-success">
-                                    <span class="icon is-medium">
-                                        <i class="fab fa-ubuntu"></i>
-                                    </span>
-                                    <span>Linux</span>
-                                </a>
-                                <a href="binaries/Columno-0.1.0-macos-x64.pkg"  onclick="gtag('event','download',{'event_category':'beta01','event_label':'osx'});" class="ls-button button is-medium has-text-weight-bold is-success">
-                                    <span class="icon is-medium">
-                                        <i class="fab fa-apple"></i>
-                                    </span>
-                                    <span>Mac</span>
-                                </a>
+                        <a href="binaries/Columno-0.1.0-win64.exe" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'windows'});" class="ls-button button is-medium has-text-weight-bold is-success ">
+                            <span class="icon is-medium">
+                                <i class="fab fa-windows"></i>
+                            </span>
+                            <span>Windows</span>
+                        </a>
+                        <a href="binaries/Columno-0.1.0-linux.tar.gz" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'linux'});" class="ls-button button is-medium has-text-weight-bold is-success">
+                            <span class="icon is-medium">
+                                <i class="fab fa-ubuntu"></i>
+                            </span>
+                            <span>Linux</span>
+                        </a>
+                        <a href="binaries/Columno-0.1.0-macos-x64.pkg" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'osx'});" class="ls-button button is-medium has-text-weight-bold is-success">
+                            <span class="icon is-medium">
+                                <i class="fab fa-apple"></i>
+                            </span>
+                            <span>Mac</span>
+                        </a>
 
                     </h1>
+                    <article class="message is-hidden" id="loginBoxDl">
+                        <div class="message-header">
+                            <p>Create a user account</p>
+                            <button class="delete" aria-label="delete"></button>
+                        </div>
+                        <div class="message-body">
+                            <h2 class="subtitle is-5 is-marginless">Thanks for downloading Columno!<br/>Please create an account to login to the server.<br/><br/></h2>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">E-mail</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control">
+                                            <input class="input" type="email" id="email" placeholder="Your email">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Password</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control">
+                                            <input class="input" type="password" id="password" placeholder="Your choice"><br /><br />
+                                            <a href="#" id="btnExec" onclick="createUser(document.getElementById('email').value, document.getElementById('password').value); return false;" class="ls-button is-size-6 is button has-text-weight-bold is-success">
+                                                Sign up
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
                     <br />
                     <br />
                 </div>

@@ -252,11 +252,12 @@
                 document.getElementById('loggedinas').innerText = "You are logged in.";
                 document.getElementById("loginheaderbox").classList.remove('is-hidden')
             } else {
-                alert("invalid login");
+                document.getElementById("loginmsg").innerText = "Invalid login";
             }
         }
 
         function logIn(email, password) {
+            document.getElementById("loginmsg").innerText = "";
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "https://api.columno.com/users/auth?email=" + email + "&password=" + password, true);
             xhttp.onload = function () {
@@ -270,7 +271,8 @@
 
             };
             xhttp.onerror = function () {
-                alert("error");
+
+                document.getElementById("loginmsg").innerText = "Invalid login";
             }
             xhttp.send();
         }
@@ -289,7 +291,8 @@
 
             };
             xhttp.onerror = function () {
-                alert("error");
+
+                document.getElementById("loginmsg").innerText = "Invalid login";
             }
             xhttp.send();
         }
@@ -382,7 +385,7 @@
                                             <input class="input" type="password" id="passworddl" placeholder="Your choice"><br /><br />
                                             <a href="#" id="btnExec" onclick="createUser(document.getElementById('emaildl').value, document.getElementById('passworddl').value); return false;" class="ls-button is-size-6 is button has-text-weight-bold is-success">
                                                 Sign up
-                                            </a>
+                                            </a><br/>
                                         </p>
                                     </div>
                                 </div>
@@ -453,7 +456,9 @@
                                             </a>
                                             <a href="#" id="btnExec" onclick="createUser(document.getElementById('email').value, document.getElementById('password').value); return false;" class="ls-button is-size-6 is button has-text-weight-bold is-success">
                                                 Sign up
-                                            </a>
+                                            </a><br />
+                                            <span id="loginmsg"></span>
+
                                         </p>
                                     </div>
                                 </div>

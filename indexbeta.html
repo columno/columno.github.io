@@ -244,6 +244,17 @@
 
         }
 
+        function auth(token) {
+            if (myObj.token != "Invalid login") {
+                localStorage.setItem("token", token);
+                document.getElementById('loginBox').classList.add('is-hidden');
+                document.getElementById('loggedinas').innerText = "You are logged in.";
+                document.getElementById("loginheaderbox").classList.remove('is-hidden')
+            } else {
+                alert("invalid login");
+            }
+        }
+
         function logIn(email, password) {
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "https://api.columno.com/users/auth?email=" + email + "&password=" + password, true);
@@ -251,17 +262,7 @@
 
                 var jsonResponse = xhttp.response;
                 myObj = JSON.parse(jsonResponse);
-                var txt = ""
-                var headtxt = "";
-                var i = 0;
-                if (myObj.token != "Invalid login") {
-                    localStorage.setItem("token", myObj.token);
-                    document.getElementById('loginBox').classList.add('is-hidden');
-                    document.getElementById('loggedinas').innerText = "You are logged in.";
-                    document.getElementById("loginheaderbox").classList.remove('is-hidden')
-                } else {
-                    alert("invalid login");
-                }
+                auth(myObj.token);
 
                 //alert(myObj.token);
 
@@ -276,21 +277,20 @@
 
         function createUser(email, password) {
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "https://api.columno.com/users/create", true);
-            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.open("GET", "https://api.columno.com/users/create?email=" + email + "&password=" + password, true);
 
-            xhttp.onreadystatechange = function () {
+            xhttp.onload = function () {
 
-                
-
-                //alert(myObj.token);
+                var jsonResponse = xhttp.response;
+                myObj = JSON.parse(jsonResponse);
+                auth(myObj.token);
 
 
             };
             xhttp.onerror = function () {
                 alert("error");
             }
-            xhttp.send("email=" + email + "&password=" + password);
+            xhttp.send();
         }
             
     </script>

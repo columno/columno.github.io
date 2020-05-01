@@ -277,21 +277,11 @@
         function createUser(email, password) {
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "https://api.columno.com/users/create", true);
-            xhttp.onload = function () {
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-                var jsonResponse = xhttp.response;
-                myObj = JSON.parse(jsonResponse);
-                var txt = ""
-                var headtxt = "";
-                var i = 0;
-                if (myObj.token != "Invalid login") {
-                    localStorage.setItem("token", myObj.token);
-                    document.getElementById('loginBox').classList.add('is-hidden');
-                    document.getElementById('loggedinas').innerText = "You are logged in.";
-                    document.getElementById("loginheaderbox").classList.remove('is-hidden')
-                } else {
-                    alert("invalid login");
-                }
+            xhttp.onreadystatechange = function () {
+
+                
 
                 //alert(myObj.token);
 

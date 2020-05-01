@@ -16,7 +16,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 </head>
-<body onload="getNewSelects()">
+<body onload="getNewSelects(); checkLogin();">
 
     <script>
         function addData(chart, label, data) {
@@ -155,7 +155,7 @@
         function executeStmt(stmt, stmtid) {
             var xhttp = new XMLHttpRequest();
             var curStmt = stmt.split("\n")[stmtid == 0 ? 0 : stmtid - 1];
-            var isSelect = curStmt.toLowerCase().startsWith("select");
+            var isInsert = curStmt.toLowerCase().startsWith("insert");
             xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + curStmt, true);
             xhttp.onload = function () {
 
@@ -172,12 +172,12 @@
                     postgresms += myObj.PostgreStats;
                     addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 37.2]);
 
-    //                addData(myBarChart, "Statement 1", myObj.PostgreStats);
-                    if (myObj.Data == null && isSelect) {
+                    //                addData(myBarChart, "Statement 1", myObj.PostgreStats);
+                    if (myObj.Data == null && !isInsert) {
                         setBadsqlmsg("<i class='fas fa-surprise'></i> We don't understand a thing of that SQL. Can you forgive us if we tell you that we are still in Beta 0.1? <i class='fas fa-grin-beam-sweat'></i>");
 
                     }
-                    if (isSelect) {
+                    if (!isInsert) {
                         for (x in myObj.Data) {
                             if (i == 0) {
                                 /*<tr>
@@ -226,7 +226,82 @@
                 return;
             }
             xhttp.send();
+        }
+
+
+        function checkLogin() {
+            if (localStorage.getItem("token") != null) {
+                document.getElementById('loggedinas').innerText = "You are logged in.";
+                document.getElementById("loginheaderbox").classList.remove('is-hidden')
+
             }
+
+        }
+
+        function loginOut() {
+            localStorage.removeItem("token");
+            document.getElementById("loginheaderbox").classList.add('is-hidden')
+
+        }
+
+        function logIn(email, password) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "https://api.columno.com/users/auth?email=" + email + "&password=" + password, true);
+            xhttp.onload = function () {
+
+                var jsonResponse = xhttp.response;
+                myObj = JSON.parse(jsonResponse);
+                var txt = ""
+                var headtxt = "";
+                var i = 0;
+                if (myObj.token != "Invalid login") {
+                    localStorage.setItem("token", myObj.token);
+                    document.getElementById('loginBox').classList.add('is-hidden');
+                    document.getElementById('loggedinas').innerText = "You are logged in.";
+                    document.getElementById("loginheaderbox").classList.remove('is-hidden')
+                } else {
+                    alert("invalid login");
+                }
+
+                //alert(myObj.token);
+
+
+            };
+            xhttp.onerror = function () {
+                alert("error");
+            }
+            xhttp.send();
+        }
+
+
+        function createUser(email, password) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "https://api.columno.com/users/create", true);
+            xhttp.onload = function () {
+
+                var jsonResponse = xhttp.response;
+                myObj = JSON.parse(jsonResponse);
+                var txt = ""
+                var headtxt = "";
+                var i = 0;
+                if (myObj.token != "Invalid login") {
+                    localStorage.setItem("token", myObj.token);
+                    document.getElementById('loginBox').classList.add('is-hidden');
+                    document.getElementById('loggedinas').innerText = "You are logged in.";
+                    document.getElementById("loginheaderbox").classList.remove('is-hidden')
+                } else {
+                    alert("invalid login");
+                }
+
+                //alert(myObj.token);
+
+
+            };
+            xhttp.onerror = function () {
+                alert("error");
+            }
+            xhttp.send("email=" + email + "&password=" + password);
+        }
             
     </script>
 
@@ -245,6 +320,8 @@
                 </div>
                 <div class="navbar-menu" id="mainNavMenu">
                     <div class="navbar-end has-text-info">
+
+                        <span id="loginheaderbox" class="tag is-primary has-text-info is-size-6-mobile is-size-7 is-hidden"><span id="loggedinas"></span><a class="has-text-grey" href="#" onclick="loginOut(); return false;">Log out</a></span>
                         <a href="/" class="navbar-item is-size-7 is-active">Home</a>
                         <a href="#whatis" class="navbar-item is-size-7">What is Columno?</a>
                         <a href="#contact" class="navbar-item is-size-7">Contact</a>
@@ -300,7 +377,7 @@
 
                     <div class="field">
                         <div class="control">
-                            <textarea  class="textarea is-success" id="statements"  style="font-size:smaller;"></textarea>
+                            <textarea class="textarea is-success" id="statements" style="font-size:smaller;"></textarea>
                         </div>
                     </div>
                     <a href="#" id="btnExec" onclick="loadDoc();gtag('event','click',{'event_category':'betademo','event_label':'execute'});return false;" class="ls-button is button has-text-weight-bold is-success">
@@ -309,13 +386,54 @@
                     <a href="#" onclick="getNewSelects(); return false;" class="ls-button is-one-third button has-text-weight-bold is-info">
                         <i class="fas fa-list"></i>&nbsp;New SELECTs
                     </a>&nbsp;&nbsp;
-                    <a href="#" class="ls-button button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New INSERTs</a>
+                    <a href="#" onclick="document.getElementById('loginBox').classList.remove('is-hidden');" class="ls-button button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New INSERTs &nbsp; <i class="fas fa-lock"></i></a>
 
                     <div class="notification is-danger is-hidden" id="badsql">
                         <button class="delete" onclick="document.getElementById('badsql').classList.add('is-hidden'); return false;"></button>
                         <span id="badsqlmsg"></span>
 
                     </div>
+
+                    <article class="message is-hidden" id="loginBox">
+                        <div class="message-header">
+                            <p>Log In or Sign Up</p>
+                            <button class="delete" aria-label="delete"></button>
+                        </div>
+                        <div class="message-body">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">E-mail</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control">
+                                            <input class="input" type="email" id="email" placeholder="Your email">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Password</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control">
+                                            <input class="input" type="password" id="password" placeholder="Your choice"><br /><br />
+                                            <a href="#" id="btnExec" onclick="logIn(document.getElementById('email').value, document.getElementById('password').value); return false;" class="ls-button is-size-6 is button has-text-weight-bold is-success">
+                                                Log In
+                                            </a>
+                                            <a href="#" id="btnExec" onclick="createUser(document.getElementById('email').value, document.getElementById('password').value); return false;" class="ls-button is-size-6 is button has-text-weight-bold is-success">
+                                                Sign up
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
+
                 </div>
             </div>
 

@@ -59,7 +59,7 @@
         function getNewSelects() {
             var stmts = ["SELECT * FROM Persons WHERE age<CLMNOAGE AND age>CLMNOAGESMALLER LIMIT CLMNOLIMIT;", "SELECT * FROM Persons WHERE age>CLMNOAGE LIMIT CLMNOLIMIT;",
                 "SELECT * FROM Persons WHERE age=CLMNOAGE OR age=CLMNOAGE2 LIMIT CLMNOLIMIT;", "SELECT * FROM Persons INNER JOIN testjob ON Persons.jobid=testjob.jobid WHERE age=39 LIMIT 10;"];
-            
+
             var returnV = "";
             var i;
             for (i = 0; i < stmts.length; i++) {
@@ -78,6 +78,27 @@
             }
 
             document.getElementById("statements").value = returnV.replace(/\n$/, "");
+        }
+
+        function getNewInserts() {
+            
+            if (localStorage.getItem("token") == null) {
+                document.getElementById('loginBox').classList.remove('is-hidden');                
+            }
+           
+
+            var stmts = ["CREATE TABLE MyTable (name VARCHAR(255), age int);", "INSERT INTO MyTable (name, age) VALUES ('My Name', 42);"
+                , "INSERT INTO MyTable (name, age) VALUES ('Another Name', 13);"
+                , "SELECT * FROM MyTable;"];
+            var returnV = "";
+            var i;
+            for (i = 0; i < stmts.length; i++) {
+                returnV += stmts[i] + "\n";
+                
+            }
+            document.getElementById("statements").value = returnV.replace(/\n$/, "");
+            //document.getElementById('loginBox').classList.add('is-hidden');
+
         }
 
         function openTab(evt, nm) {
@@ -154,9 +175,16 @@
 
         function executeStmt(stmt, stmtid) {
             var xhttp = new XMLHttpRequest();
+            
             var curStmt = stmt.split("\n")[stmtid == 0 ? 0 : stmtid - 1];
+            if (!curStmt.toLowerCase().startsWith("select") && stmtid == 0) {
+                stmtid = 1;
+            }
             var isInsert = curStmt.toLowerCase().startsWith("insert");
-            xhttp.open("GET", "https://api.columno.com/db/statement?token=e4c171b8-3920-46e7-b759-cef5a563d298&s=" + curStmt, true);
+            var token = "e4c171b8-3920-46e7-b759-cef5a563d298";
+            if (localStorage.getItem("token") != null) token = localStorage.getItem("token");   
+
+            xhttp.open("GET", "https://api.columno.com/db/statement?token=" + token + "&s=" + curStmt, true);
             xhttp.onload = function () {
 
                 var jsonResponse = xhttp.response;
@@ -172,9 +200,14 @@
                     postgresms += myObj.PostgreStats;
                     addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 37.2]);
 
-                    //                addData(myBarChart, "Statement 1", myObj.PostgreStats);
+                    if (myObj.Error != null) {
+                        setBadsqlmsg("<i class='fas fa-surprise'></i> Something went wrong. " + myObj.Error);
+                    }
                     if (myObj.Data == null && !isInsert) {
-                        setBadsqlmsg("<i class='fas fa-surprise'></i> We don't understand a thing of that SQL. Can you forgive us if we tell you that we are still in Beta 0.1? <i class='fas fa-grin-beam-sweat'></i>");
+                        if (stmt.toLowerCase().startsWith("create table"))
+                            setBadsqlmsg("<i class='fas fa-surprise'></i> Something went wrong with the CREATE TABLE. Are you sure it does not already exists?");
+                        else
+                            setBadsqlmsg("<i class='fas fa-surprise'></i> We don't understand a thing of that SQL. Can you forgive us if we tell you that we are still in Beta 0.1? <i class='fas fa-grin-beam-sweat'></i>");
 
                     }
                     if (!isInsert) {
@@ -215,13 +248,22 @@
                 } else {
                     // Last statement
                     
-                    document.getElementById("avgms").innerText = Math.round(Math.abs((columnoms / stmt.split("\n").length) - (postgresms / stmt.split("\n").length))*100)/100;
-                    document.getElementById("avgcost").innerText = Math.round((1000 / (columnoms / stmt.split("\n").length)) * (0.000147 / 2) * 24 * 31 * 100)/100;
+                    document.getElementById("avgms").innerText = Math.round(Math.abs((columnoms / stmt.split("\n").length) - (postgresms / stmt.split("\n").length)) * 100) / 100;
+                    
+                    document.getElementById("avgcost").innerText = Math.round((1000 / (columnoms / stmt.split("\n").length)) * (0.000147 / 2) * 24 * 31 * 100) / 100;
+                    if (document.getElementById("avgms").innerText == "NaN") {
+                        document.getElementById("avgms").innerText = "0";
+                        document.getElementById("avgcost").innerText = "0";
+                    }
                     document.getElementById("btnExec").classList.remove("is-loading");
                 }
             };
             xhttp.onerror = function () {
-                setBadsqlmsg("<i class='fas fa-surprise'></i> We don't understand a thing of that SQL. Can you forgive us if we tell you that we are still in Beta 0.1? <i class='fas fa-grin-beam-sweat'></i>");
+                
+                if (stmt.toLowerCase().startsWith("create table"))
+                    setBadsqlmsg("<i class='fas fa-surprise'></i> Something went wrong with the CREATE TABLE.. Are you sure it does not already exists?<i class='fas fa-grin-beam-sweat'></i>");
+                else
+                    setBadsqlmsg("<i class='fas fa-surprise'></i> We don't understand a thing of that SQL. Can you forgive us if we tell you that we are still in Beta 0.1? <i class='fas fa-grin-beam-sweat'></i>");
                 document.getElementById("btnExec").classList.remove("is-loading");
                 return;
             }
@@ -417,7 +459,7 @@
                     <a href="#" onclick="getNewSelects(); return false;" class="ls-button is-one-third button has-text-weight-bold is-info">
                         <i class="fas fa-list"></i>&nbsp;New SELECTs
                     </a>&nbsp;&nbsp;
-                    <a href="#" onclick="document.getElementById('loginBox').classList.remove('is-hidden'); return false;" class="ls-button button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New INSERTs &nbsp; <i class="fas fa-lock"></i></a>
+                    <a href="#" onclick="getNewInserts(); return false;" class="ls-button button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New INSERTs &nbsp; <i class="fas fa-lock"></i></a>
 
                     <div class="notification is-danger is-hidden" id="badsql">
                         <button class="delete" onclick="document.getElementById('badsql').classList.add('is-hidden'); return false;"></button>

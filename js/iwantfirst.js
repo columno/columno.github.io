@@ -255,6 +255,7 @@
             if (localStorage.getItem("token") != null) {
                 document.getElementById('loggedinas').innerText = "You are logged in.";
                 document.getElementById("loginheaderbox").classList.remove('is-hidden')
+                document.getElementById("loginheaderboxcreateuser").classList.add('is-hidden')
 
             }
 
@@ -263,6 +264,8 @@
         function loginOut() {
             localStorage.removeItem("token");
             document.getElementById("loginheaderbox").classList.add('is-hidden')
+            document.getElementById("loginheaderboxcreateuser").classList.remove('is-hidden')
+            
 
         }
 
@@ -273,6 +276,7 @@
                 document.getElementById('loginBoxDl').classList.add('is-hidden');
                 document.getElementById('loggedinas').innerText = "You are logged in.";
                 document.getElementById("loginheaderbox").classList.remove('is-hidden')
+                document.getElementById("loginheaderboxcreateuser").classList.add('is-hidden')
             } else {
                 document.getElementById("loginmsg").innerText = "Invalid login";
             }
@@ -308,7 +312,12 @@
 
                 var jsonResponse = xhttp.response;
                 myObj = JSON.parse(jsonResponse);
-                auth(myObj.token);
+                if (myObj.token == "Email exists") {
+                    document.getElementById("loginmsg").innerText = "Email already exists.";
+                } else {
+
+                    auth(myObj.token);
+                }
 
 
             };

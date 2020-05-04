@@ -180,7 +180,7 @@
             if (!curStmt.toLowerCase().startsWith("select") && stmtid == 0) {
                 stmtid = 1;
             }
-            var isInsert = curStmt.toLowerCase().startsWith("insert");
+            var isInsert = curStmt.toLowerCase().startsWith("insert") | curStmt.toLowerCase().startsWith("create table") ;
             var token = "e4c171b8-3920-46e7-b759-cef5a563d298";
             if (localStorage.getItem("token") != null) token = localStorage.getItem("token");   
 

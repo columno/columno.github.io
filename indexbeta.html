@@ -81,7 +81,8 @@
         }
 
         function getNewInserts() {
-            
+            document.getElementById("loginmsg").innerText = "";
+
             if (localStorage.getItem("token") == null) {
                 document.getElementById('loginBox').classList.remove('is-hidden');                
             }

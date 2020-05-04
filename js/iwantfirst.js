@@ -129,12 +129,12 @@
                 }
                 if (stmt.split("\n")[v].toLowerCase().startsWith("delete")) {
 
-                    setBadsqlmsg("<i class='is-large fas fa-sad-tear'></i> Sorry, we can't DELETE yet.. Check out our timeline to see when we expect that to be supported.");
+                    setBadsqlmsg("<i class='is-large fas fa-sad-tear'></i> Sorry, we can't DELETE yet..");
                     return;
                 }
                 if (stmt.split("\n")[v].toLowerCase().startsWith("update")) {
 
-                    setBadsqlmsg("<i class='is-large fas fa-sad-tear'></i> Sorry, we are not that up-to-date to handle an UPDATE <i class='fas fa-grin-beam-sweat'></i>.. Check out our timeline to see when we expect that to be supported.");
+                    setBadsqlmsg("<i class='is-large fas fa-sad-tear'></i> Sorry, we are not that up-to-date to handle an UPDATE <i class='fas fa-grin-beam-sweat'></i>..");
                     return;
                 }
                 if (stmt.split("\n")[v].toLowerCase().includes("union select")) {

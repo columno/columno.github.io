@@ -137,7 +137,7 @@
                         <i class="fas fa-list"></i>&nbsp;New SELECTs
                     </a>&nbsp;&nbsp;
                     <a href="#" onclick="getNewInserts(); return false;" class="ls-button button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New INSERTs &nbsp; <i class="fas fa-lock"></i></a>
-                    
+
                     <div class="notification is-danger is-hidden" id="badsql">
                         <button class="delete" onclick="document.getElementById('badsql').classList.add('is-hidden'); return false;"></button>
                         <span id="badsqlmsg"></span>
@@ -418,7 +418,7 @@
                     </div>
                     <h5 class="title has-text-wight-bold is-5 has-text-white">Is CockroachDB, CosmosDB, Aurora better?</h5>
                     <div class="content">
-                        <p>Many modern scalable databases exist, often categorized as NoSQL or NewSQL. Most of them are awesome. Columno is a different approach — you  we seamlessly let you choose where to store data. You can, e.g., choose Redis for some data and DynamoDB for other ― all from the same DB connection with the SQL interface you know.</p>
+                        <p>Many modern scalable databases exist, often categorized as NoSQL or NewSQL. Most of them are awesome. Columno is a different approach — we seamlessly let you choose where to store data. You can, e.g., choose Redis for some data and DynamoDB for other ― all from the same DB connection with the SQL interface you know.</p>
                     </div>
                 </div>
                 <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
@@ -599,6 +599,7 @@
             </div>
         </div>
     </footer>
+    <div id="ga-pro" class="ga-google-analytics-pro-optout ga-google-analytics-pro-optout-open is-hidden" style="width: 100%; opacity: 1;"><div class="ga-google-analytics-pro-optout-content"><a class="ga-google-analytics-pro-optout-icon ga-google-analytics-pro-optout-info" href="#" title="Click for more information" onclick="alert('We use Google Analytics to collect anonymous usage data. This helps to improve your experience on our website. Also, we store a token in Local Storage when you log in and we remove it when you log out. That\'s it :)'); return false;">?</a><div class="ga-google-analytics-pro-optout-message">This website collects usage data to help us improve your experience of the site. <a class="ga-google-analytics-pro-optin-link" href="#" onclick="document.getElementById('ga-pro').classList.add('is-hidden');localStorage.setItem('cookiebanner','accept'); return false;" title="Continue">Click here to accept</a> or <a class="ga-google-analytics-pro-optout-link" href="#" title="Click here to opt out" onclick="alert('We use Google Analytics to collect anonymous usage data. This helps to improve your experience on our website. Also, we store a token in Local Storage when you log in and we remove it when you log out. By using Columno, you have to accept this :)'); return false;">here if you don't like that</a>.</div><a class="ga-google-analytics-pro-optout-icon ga-google-analytics-pro-optout-close" href="#" onclick="document.getElementById('ga-pro').classList.add('is-hidden'); localStorage.setItem('cookiebanner','accept');return false;" title="Click to close this notice">×</a></div></div>
     <script type="text/javascript" src="js/main.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152732193-1"></script>
@@ -607,12 +608,6 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-152732193-1');</script>
-    <script>!function () { var i, e, t, s = window.legal = window.legal || []; if (s.SNIPPET_VERSION = "3.0.0", i = "https://widgets.legalmonster.com/v1/legal.js", !s.__VERSION__) if (s.invoked) window.console && console.info && console.info("legal.js: The initialisation snippet is included more than once on this page, and does not need to be."); else { for (s.invoked = !0, s.methods = ["cookieConsent", "document", "ensureConsent", "handleWidget", "signup", "user"], s.factory = function (t) { return function () { var e = Array.prototype.slice.call(arguments); return e.unshift(t), s.push(e), s } }, e = 0; e < s.methods.length; e++)t = s.methods[e], s[t] = s.factory(t); s.load = function (e, t) { var n, o = document.createElement("script"); o.setAttribute("data-legalmonster", "sven"), o.type = "text/javascript", o.async = !0, o.src = i, (n = document.getElementsByTagName("script")[0]).parentNode.insertBefore(o, n), s.__project = e, s.__loadOptions = t || {} }, s.widget = function (e) { s.__project || s.load(e.widgetPublicKey), s.handleWidget(e) } } }();
-
-        legal.widget({
-            type: "cookie",
-            widgetPublicKey: "2HxUDioDoko7EVvJxn5zzA1y",
-        });</script>
 
 
 </body>

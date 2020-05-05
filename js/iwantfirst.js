@@ -260,6 +260,9 @@
                 document.getElementById("loginheaderboxcreateuser").classList.add('is-hidden')
 
             }
+            if (localStorage.getItem("cookiebanner") == null) {
+                document.getElementById('ga-pro').classList.remove('is-hidden')
+            }
 
         }
 

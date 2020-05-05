@@ -180,7 +180,7 @@
 
                     columnoms += myObj.ColumnoStats;
                     postgresms += myObj.PostgreStats;
-                    addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 30]);
+                    addData(myBarChart2, "Statement " + stmtid, [(1000 / myObj.ColumnoStats) * (0.000147 / 2) * 24 * 31, Math.ceil((0.000147 / 2) * 24 * 31), 58]);
 
                     if (myObj.Error != null) {
                         setBadsqlmsg("<i class='fas fa-surprise'></i> Something went wrong. " + myObj.Error);

@@ -308,8 +308,19 @@
             xhttp.send();
         }
 
-
-        function createUser(email, password) {
+function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        return (true)
+    }
+    alert("You have entered an invalid email address.")
+    return (false)
+}
+function createUser(email, password) {
+    ValidateEmail(email);
+    if (password.length < 6) {
+        alert("Please create a stronger password.")
+        return (false)
+    }
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "https://api.columno.com/users/create?email=" + email + "&password=" + password, true);
 

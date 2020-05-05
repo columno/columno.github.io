@@ -7462,3 +7462,111 @@ a.ls-purple:hover, a.ls-purple:active {
         height: 100%;
         width: 100%;
       }
+
+
+#ga-pro.ga-google-analytics-pro-optout {
+    display: none;
+    width: 100%;
+    left: 0;
+    right: auto;
+    opacity: 1;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 9999;
+    min-height: 40px;
+    padding: 10px 0;
+    margin: 0;
+    text-align: center
+}
+
+#ga-pro.ga-google-analytics-pro-optout-open {
+    display: block
+}
+
+#ga-pro.ga-google-analytics-pro-optout-closed {
+    display: block;
+    width: 40px;
+    right: 0;
+    left: auto;
+    opacity: .8
+}
+
+    #ga-pro.ga-google-analytics-pro-optout-closed .ga-google-analytics-pro-optout-close, #ga-pro.ga-google-analytics-pro-optout-closed .ga-google-analytics-pro-optout-message {
+        display: none
+    }
+
+#ga-pro .ga-google-analytics-pro-optout-content {
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 0 40px;
+    margin: 0;
+    line-height: 20px;
+    font-size: 15px
+}
+
+#ga-pro .ga-google-analytics-pro-optout-icon {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+    font-family: helvetica neue,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 600
+}
+
+    #ga-pro .ga-google-analytics-pro-optout-icon:link, #ga-pro .ga-google-analytics-pro-optout-icon:visited, #ga-pro .ga-google-analytics-pro-optout-icon:hover, #ga-pro .ga-google-analytics-pro-optout-icon:active {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        border: 0;
+        border-radius: 50%;
+        text-decoration: none;
+        color: #fff;
+        background-color: rgba(255,255,255,.3)
+    }
+
+    #ga-pro .ga-google-analytics-pro-optout-icon:hover, #ga-pro .ga-google-analytics-pro-optout-icon:active {
+        color: #fff;
+        background-color: rgba(255,255,255,.2)
+    }
+
+#ga-pro .ga-google-analytics-pro-optout-info {
+    left: 10px
+}
+
+#ga-pro .ga-google-analytics-pro-optout-close {
+    right: 10px;
+    line-height: 18px
+}
+
+.ga-google-analytics-pro-optout {
+    bottom: 0;
+    color: #fff;
+    background-color: #377fea
+}
+
+#ga-pro.ga-google-analytics-pro-optout a:link, #ga-pro.ga-google-analytics-pro-optout a:visited {
+    color: #fff
+}
+
+#ga-pro.ga-google-analytics-pro-optout a:hover, #ga-pro.ga-google-analytics-pro-optout a:active {
+    color: #fff;
+    text-decoration: none
+}
+
+.ga-google-analytics-pro-optout-message a {
+    text-decoration: underline;
+    text-decoration-color: #fff
+}
+
+    .ga-google-analytics-pro-optout-message a.ga-google-analytics-pro-optin-link {
+        font-weight: 700
+    }

@@ -36,7 +36,7 @@
         }
 
         function getNewSelects() {
-            var stmts = ["SELECT * FROM Persons WHERE age<CLMNOAGE AND age>CLMNOAGESMALLER LIMIT CLMNOLIMIT;", "SELECT * FROM Jobs LIMIT CLMNOLIMIT;",
+            var stmts = ["SELECT name, age, city FROM Persons WHERE age<CLMNOAGE AND age>CLMNOAGESMALLER LIMIT CLMNOLIMIT;", "SELECT * FROM Jobs LIMIT CLMNOLIMIT;",
                 "SELECT * FROM Persons WHERE age=CLMNOAGE AND city='CLMNOCITY' OR age=CLMNOAGE2 LIMIT CLMNOLIMIT;", "SELECT * FROM Persons INNER JOIN Jobs ON Persons.jobid=Jobs.jobid WHERE age=CLMNOAGE LIMIT CLMNOLIMIT;"];
             var cities = ["New York", "Irving", "Chicago", "Houston", "Honolulu", "Washington", "Dayton", "Boston", "Reno", "Tampa"];
             var returnV = "";

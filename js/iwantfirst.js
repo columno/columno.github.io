@@ -36,24 +36,26 @@
         }
 
         function getNewSelects() {
-            var stmts = ["SELECT * FROM Persons WHERE age<CLMNOAGE AND age>CLMNOAGESMALLER LIMIT CLMNOLIMIT;", "SELECT * FROM Persons WHERE age>CLMNOAGE LIMIT CLMNOLIMIT;",
-                "SELECT * FROM Persons WHERE age=CLMNOAGE OR age=CLMNOAGE2 LIMIT CLMNOLIMIT;", "SELECT * FROM Persons INNER JOIN testjob ON Persons.jobid=testjob.jobid WHERE age=39 LIMIT 10;"];
-
+            var stmts = ["SELECT * FROM Persons WHERE age<CLMNOAGE AND age>CLMNOAGESMALLER LIMIT CLMNOLIMIT;", "SELECT * FROM Jobs LIMIT CLMNOLIMIT;",
+                "SELECT * FROM Persons WHERE age=CLMNOAGE AND city='CLMNOCITY' OR age=CLMNOAGE2 LIMIT CLMNOLIMIT;", "SELECT * FROM Persons INNER JOIN Jobs ON Persons.jobid=Jobs.jobid WHERE age=CLMNOAGE LIMIT CLMNOLIMIT;"];
+            var cities = ["New York", "Irving", "Chicago", "Houston", "Honolulu", "Washington", "Dayton", "Boston", "Reno", "Tampa"];
             var returnV = "";
             var i;
             for (i = 0; i < stmts.length; i++) {
                 var randAgeBig = Math.floor(Math.random() * 150);
                 var randAgeSmaller = Math.floor(Math.random() * 150);
-                while (randAgeBig - 1 < randAgeSmaller + 1) {
+
+                while (randAgeBig - randAgeSmaller > 30 | randAgeBig - randAgeSmaller < 10) {
                     randAgeBig = Math.floor(Math.random() * 150);
                     randAgeSmaller = Math.floor(Math.random() * 150);
                 }
                 var limit = Math.floor(Math.random() * 10);
-                limit = limit == 0 ? 1 : limit;
+                limit = limit < 3 ? 3 : limit;
                 returnV += stmts[i].replace(/CLMNOAGESMALLER/gm, randAgeSmaller)
                     .replace(/CLMNOAGE2/gm, Math.floor(Math.random() * 150))
                     .replace(/CLMNOAGE/gm, randAgeBig)
-                    .replace(/CLMNOLIMIT/gm, limit) + "\n";
+                    .replace(/CLMNOLIMIT/gm, limit)
+                    .replace(/CLMNOCITY/gm, cities[Math.floor(Math.random() * 10)])+ "\n";
             }
 
             document.getElementById("statements").value = returnV.replace(/\n$/, "");

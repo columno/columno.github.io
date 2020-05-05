@@ -319,6 +319,7 @@
                 myObj = JSON.parse(jsonResponse);
                 if (myObj.token == "Email exists") {
                     document.getElementById("loginmsg").innerText = "Email already exists.";
+                    document.getElementById("loginmsg2").innerText = "Email already exists.";
                 } else {
 
                     auth(myObj.token);

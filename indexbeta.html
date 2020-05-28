@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <title>Columno - Next-generation database technologies</title>
+    <link href="css/main.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link href="css/all.min.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/img/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <script src="js/iwantfirst.js"></script>
+</head>
+<body onload="getNewSelects(); checkLogin();">
+
+    <section class="hero ls-main-hero">
+        <div class="hero-head">
+            <nav class="navbar container ls-main-nav">
+                <div class="navbar-brand">
+                    <a href="/" class="navbar-item">
+                        <img src="img/Columno_300.png" width="300">
+                    </a>
+                    <a role="button" class="navbar-burger has-text-info" data-target="mainNavMenu" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="navbar-menu" id="mainNavMenu">
+                    <div class="navbar-end has-text-info">
+                        <span id="loginheaderboxcreateuser" class="tag is-primary has-text-info is-size-6-mobile is-size-7"><a class="has-text-white" href="#loginBox" onclick="document.getElementById('loginBox').classList.remove('is-hidden'); ">Log in</a></span>
+                        <span id="loginheaderbox" class="tag is-primary has-text-info is-size-6-mobile is-size-7 is-hidden"><span id="loggedinas"></span><a class="has-text-grey" href="#" onclick="loginOut(); return false;">Log out</a></span>
+                        <a href="/" class="navbar-item is-size-7 is-active">Home</a>
+                        <a href="#whatis" class="navbar-item is-size-7">What is Columno?</a>
+                        <a href="#contact" class="navbar-item is-size-7">Contact</a>
+                        <span class="navbar-item is-size-5 ls-main-nav--signup"><a href="https://twitter.com/columnodb" class="has-text-white is-paddingless"><i class="fab fa-twitter is-size-4"></i></a> &nbsp; <a href="https://instagram.com/columnodb" class="has-text-white is-paddingless"><i class="fab fa-instagram is-size-4"></i></a> &nbsp; <a href="https://github.com/columno" class="has-text-white is-paddingless"><i class="fab fa-github is-size-4"></i></a> &nbsp; <a href="https://www.linkedin.com/company/columno" class="has-text-white is-paddingless"><i class="fab fa-linkedin is-size-4"></i></a></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="hero-body container">
+            <div class="columns">
+                <div class="column is-5-desktop">
+                    <h1 class="title is-size-2-mobile is-1 is-spaced has-text-white">
+                        Next-generation database technologies
+                    </h1>
+                    <h2 class="subtitle is-5 has-text-white">
+                        Columno is a novel approach to relational and NoSQL databases that reduces the learning-curve for developers while drastically improving performance and cost.<br />
+                    </h2>
+                    <h1 class="title is-size-4-mobile is-3 is-spaced has-text-white">
+                        Download Columno Beta v. 0.2.0<br />
+                        <a href="binaries/Columno-0.2.0-win64.exe" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'windows'});" class="ls-button button is-medium has-text-weight-bold is-success ">
+                            <span class="icon is-medium">
+                                <i class="fab fa-windows"></i>
+                            </span>
+                            <span>Windows</span>
+                        </a>
+                        <a href="binaries/Columno-0.2.0-linux.tar.gz" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'linux'});" class="ls-button button is-medium has-text-weight-bold is-success">
+                            <span class="icon is-medium">
+                                <i class="fab fa-ubuntu"></i>
+                            </span>
+                            <span>Linux</span>
+                        </a>
+                        <a href="binaries/Columno-0.2.0-macos-x64.pkg" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'osx'});" class="ls-button button is-medium has-text-weight-bold is-success">
+                            <span class="icon is-medium">
+                                <i class="fab fa-apple"></i>
+                            </span>
+                            <span>Mac</span>
+                        </a><br/><a href="#" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden'); return false;" class="is-size-7 has-text-white" style="text-decoration: underline;">How to get started?</a>
+
+                    </h1>
+                    <article class="message is-hidden" id="loginBoxDl">
+                        <div class="message-header">
+                            <p>Getting Started</p>
+                            <button class="delete" aria-label="delete" onclick="document.getElementById('loginBoxDl').classList.add('is-hidden'); return false;"></button>
+                        </div>
+                        <div class="message-body">
+                            <h2 class="subtitle is-5 is-marginless">Thanks for trying out Columno Beta!<br /><br /></h2>
+                            <i>The functionality is very limited in this release. The program is now self-contained with no interaction to Columno Cloud — the cloud service dependency from v. 0.1 (still used by the web demo) has been removed.</i><br /><br />
+                            After downloading and installing, the Columno server is listening on port 5435. The server is PostgreSQL-compatible and you may connect to it using:<br />
+                            <code>psql -p 5435 -h localhost -U &lt;any user/pass&gt; -d "TODO"</code>
+                            The database name, <code>-d</code>, holds the API credentials to your Amazon DynamoDB.<br />There is no need for you to create or configure anything in DynamoDB — Columno creates and maintains the DynamoDB table (default 5 read/5 write threads).<br />
+                            Now you may INSERT data to any given table, e.g.:<br />
+                            <code>INSERT INTO Persons (name, age, city) VALUES ('John Doe', 42, 'Aarhus');</code><br/>
+                            And then SELECT:<br/>
+                            <code>SELECT * FROM Persons;</code><br/>
+                            If you have any questions or comments, please <a href="#contact" style="text-decoration: underline;">contact us</a>!
+
+                        </div>
+                    </article>
+                    <h1 class="title is-size-7-mobile is-1 has-text-white"><br /><br /></h1>
+                </div>
+                <div class="column is-5-desktop is-offset-1-desktop has-text-white">
+                    <div class="ls-banner has-text-white is-marginless">
+                        <span class="tag is-success has-text-info is-size-6-mobile is-size-7">NEW June 2020</span>
+                        <span class="ls-banner--text is-size-5-mobile is-size-6"><a href="#" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden'); return false;" class="has-text-white has-text-weight-bold">Try our public beta v. 0.2.0!</a></span>
+                    </div>
+                    <h2 class="subtitle is-5 has-text-white is-marginless">
+                        <br />Live comparison between Columno with Amazon DynamoDB and a standard PostgreSQL database.<br /><br />
+                    </h2>
+                    <span>Enter SQL statements: </span>
+
+                    <div class="field">
+                        <div class="control">
+                            <textarea class="textarea is-success" id="statements" style="font-size:smaller;"></textarea>
+                        </div>
+                    </div>
+                    <a href="#" id="btnExec" onclick="loadDoc();gtag('event','click',{'event_category':'betademo','event_label':'execute'});return false;" class="ls-button is button has-text-weight-bold is-success">
+                        <i class="fas fa-play"></i>&nbsp;Execute
+                    </a>&nbsp;&nbsp;
+                    <a href="#" onclick="getNewSelects(); return false;" class="ls-button is-one-third button has-text-weight-bold is-info">
+                        <i class="fas fa-list"></i>&nbsp;New SELECTs
+                    </a>&nbsp;&nbsp;
+                    <a href="#" onclick="getNewInserts(); return false;" class="ls-button button has-text-weight-bold is-info"><i class="fas fa-list"></i>&nbsp;New INSERTs &nbsp; <i class="fas fa-lock"></i></a>
+
+                    <div class="notification is-danger is-hidden" id="badsql">
+                        <button class="delete" onclick="document.getElementById('badsql').classList.add('is-hidden'); return false;"></button>
+                        <span id="badsqlmsg"></span>
+
+                    </div>
+
+                    <article class="message is-hidden" id="loginBox">
+                        <div class="message-header">
+                            <p>Log In or Sign Up</p>
+                            <button class="delete" aria-label="delete" onclick="document.getElementById('loginBox').classList.add('is-hidden'); return false;"></button>
+                        </div>
+                        <div class="message-body">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">E-mail</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control">
+                                            <input class="input" type="email" id="email" placeholder="Your email">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Password</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control">
+                                            <input class="input" type="password" id="password" placeholder="Your choice"><br /><br />
+                                            <a href="#" id="btLogin" onclick="logIn(document.getElementById('email').value, document.getElementById('password').value); return false;" class="ls-button is-size-6 is button has-text-weight-bold is-success">
+                                                Log In
+                                            </a>
+                                            <a href="#" id="btnSignup" onclick="createUser(document.getElementById('email').value, document.getElementById('password').value); return false;" class="ls-button is-size-6 is button has-text-weight-bold is-success">
+                                                Sign up
+                                            </a><br />
+                                            <span id="loginmsg"></span>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="is-hidden" id="results">
+
+        <div class="columns">
+            <div class="column left is-1-desktop"></div>
+            <div class="column left is-6-desktop is-offset-1-desktop is-marginless">
+
+                <h1 class="title is-size-3-mobile is-3 is-spaced">
+                    Columno Beta vs PostgreSQL
+                </h1>
+                <h2 class="subtitle">
+
+                    With your statements there's a <strong>difference of <span id="avgms"></span>ms in average</strong> per query.<br />
+                    A medium server in AWS EC2 costs from <strong>30USD/month</strong>. Columno can run one query each second for a full month at full speed for <strong>only 0.66USD/month</strong>.
+                    Running your statements above back-to-back non-stop for a full month is only <span id="avgcost"></span>USD/month.<br />
+                    <a href="#whatis">How is this possible?</a>
+                </h2>
+                <div class="columns">
+                    <div class="column left is-6-desktop is-offset-1-desktop is-marginless">
+                        <h1 class="title is-size-3-mobile is-3 is-spaced">
+                            Performance Results
+                        </h1>
+                        <canvas id="performance"></canvas>
+                        <span class="bd-color" style="background: #3e95cd;"></span> Columno (back-to-back) &nbsp; <span class="bd-color" style="background: #c45850;"></span> PostgreSQL
+                    </div>
+                    <div class="column left is-6-desktop is-offset-1-desktop is-marginless">
+                        <h1 class="title is-size-3-mobile is-3 is-spaced">
+                            Cost Results
+                        </h1>
+                        <canvas id="cost"></canvas>
+                        &nbsp; <span class="bd-color" style="background: #377fea;"></span> Columno (1 query/sec)
+                        <script src="js/readyforgraphwork.js"></script>
+                    </div>
+
+                </div>
+            </div>
+            <div class="column right is-4-desktop">
+                <h1 class="title is-size-3-mobile is-3 is-spaced">
+                    Results
+                </h1>
+                <div class="tabs is-toggle">
+                    <ul>
+                        <li class="tablinks is-active" id="li1"><a href="#" onclick="openTab('li1', 'st1result'); return false;">Statement 1</a></li>
+                        <li class="tablinks id-hidden" id="li2"><a href="#" onclick="openTab('li2', 'st2result'); return false;">Statement 2</a></li>
+                        <li class="tablinks id-hidden" id="li3"><a href="#" onclick="openTab('li3', 'st3result'); return false;">Statement 3</a></li>
+                        <li class="tablinks id-hidden" id="li4"><a href="#" onclick="openTab('li4', 'st4result'); return false;">Statement 4</a></li>
+                    </ul>
+                </div>
+
+                <div id="st1result" class="tabcontent" style="overflow-x:auto;">
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth is-size-7">
+                        <thead>
+                            <tr id="tableHead1">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody1">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="st2result" class="tabcontent" style="display:none; overflow-x:auto;">
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth is-size-7">
+                        <thead>
+                            <tr id="tableHead2">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody2">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="st3result" class="tabcontent" style="display:none; overflow-x:auto;">
+
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth is-size-7">
+                        <thead>
+                            <tr id="tableHead3">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody3">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="st4result" class="tabcontent" style="display:none; overflow-x:auto;">
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth is-size-7">
+                        <thead>
+                            <tr id="tableHead4">
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody4">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="is-marginless" />
+        <br />
+    </section>
+    <section id="whatis">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-desktop is-offset-2-desktop">
+                    <div class="ls-section-content has-text-centered">
+                        <h3 class="title has-text-dark">What is Columno?</h3>
+                        <p class="content has-text-dark is-size-5">
+                            Columno is an on-the-fly <i>"translator"</i> between relational databases and NoSQL databases.<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-one-third">
+                    <article class="card ls-feature-card">
+                        <div class="card-content">
+                            <div class="media-content has-text-centered">
+                                <h3 class="title is-5 has-text-weight-bold">
+                                    <a href="/" class="has-text-dark" title="">
+                                        The Best from Both Worlds
+                                    </a>
+                                </h3>
+                                <p class="is-size-6">
+                                    Well-known SQL interface currently with PostgreSQL support <i>(no need to change sourcecode/no new libraries)</i>.<br />
+                                    High scalability and very low cost with NoSQL <i>(Redis, Azure Table Storage coming soon)</i>.<br />
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="column is-one-third">
+                    <article class="card ls-feature-card">
+                        <div class="card-content">
+                            <div class="media-content has-text-centered">
+                                <h3 class="title is-5 has-text-weight-bold">
+                                    <a href="/" class="has-text-dark" title="">
+                                        Employ New Techology with Zero Experience
+                                    </a>
+                                </h3>
+                                <p class="is-size-6">
+                                    Like to use the lastest in-memory databases along with a scalable and cheap key-value store? You will be able to cross-join, insert, update, ... in NoSQL DBs from your standard framework (ORM).
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="column is-one-third">
+                    <article class="card ls-feature-card">
+                        <div class="card-content">
+                            <div class="media-content has-text-centered">
+                                <h3 class="title is-5 has-text-weight-bold">
+                                    <a href="/" class="has-text-dark" title="">
+                                        Cloud or On-premise
+                                    </a>
+                                </h3>
+                                <p class="is-size-6">
+                                    Columno Cloud manages everything for you. Just select the NoSQL DBs you would like to use, point to our database and you are up and running.<br />
+                                    Want everything on your own network? Download and run Columno on your own server.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section class="section has-background-primary ls-hero-icons" id="moredetails">
+        <div class="container has-white-text">
+            <div class="columns ls-space-bottom">
+                <div class="column is-8 is-offset-2">
+                    <div class="ls-section-content has-text-centered">
+                        <h3 class="title has-text-white">What is Columno in more details?</h3>
+                        <p class="content has-text-white is-size-5">
+                            Want to know more? Please <a href="#contact" class="has-text-white" style="text-decoration: underline;">get in touch</a> — we are happy to share more details!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-multiline is-mobile">
+                <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
+                    <div class="ls-icon">
+                        <span class="icon">
+                            <i aria-hidden="true" class="fas fa-3x fa-hand-holding-usd"></i>
+                        </span>
+                    </div>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">Why is it so cheap?</h5>
+                    <div class="content">
+                        <p>Many NoSQL databases are rather simple concepts compared to traditional databases. With NoSQL databases you typically don't pay to run an instance. You only pay for what you use or provision.</p>
+                    </div>
+                </div>
+                <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
+                    <div class="ls-icon">
+                        <span class="icon">
+                            <i aria-hidden="true" class="far fa-3x fa-address-book"></i>
+                        </span>
+                    </div>
+
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">Where's the index?</h5>
+                    <div class="content">
+                        <p>Everything is stored in the NoSQL DBs. No information resides permanently in the Columno program. This makes Columno more fault-tolerant and scalable.</p>
+                    </div>
+                </div>
+                <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
+                    <div class="ls-icon">
+                        <span class="icon">
+                            <i aria-hidden="true" class="fas fa-3x fa-code"></i>
+                        </span>
+                    </div>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">What language and when is the next release?</h5>
+                    <div class="content">
+                        <p>Currently, it's a mix of C++, C# and Python. In a few months it will all be written in C++. The core NoSQL translation is currently done in our cloud-service. Very soon it will all be done within the program. We aim at releasing a new version every month.</p>
+                    </div>
+                </div>
+
+                <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
+                    <div class="ls-icon">
+                        <span class="icon">
+                            <i aria-hidden="true" class="fas fa-3x fa-not-equal"></i>
+                        </span>
+                    </div>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">Is CockroachDB, CosmosDB, Aurora better?</h5>
+                    <div class="content">
+                        <p>Many modern scalable databases exist, often categorized as NoSQL or NewSQL. Most of them are awesome. Columno is a different approach — we seamlessly let you choose where to store data. You can, e.g., choose Redis for some data and DynamoDB for other ― all from the same DB connection with the SQL interface you know.</p>
+                    </div>
+                </div>
+                <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
+                    <div class="ls-icon">
+                        <span class="icon">
+                            <i aria-hidden="true" class="fas fa-3x fa-people-carry"></i>
+                        </span>
+                    </div>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">What's the overhead of all this?</h5>
+                    <div class="content">
+                        <p>The transformation from relational data into a key-value store doesn't come for free. But key-value stores are fast, very fast — and with a lot of effort we can get extremely good performance.</p>
+                    </div>
+                </div>
+                <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
+                    <div class="ls-icon">
+                        <span class="icon">
+                            <i aria-hidden="true" class="fas fa-3x fa-crown"></i>
+                        </span>
+                    </div>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">I'm King of NoSQL ― why this?</h5>
+                    <div class="content">
+                        <p>Are you (and your colleagues — and the one taking over from you <i class="fas fa-grin-wink"></i>) experts in NoSQL DBs and do you know how to easily map all of your data and objects so it's all efficient and scalable — then Columno is a waste of your time. But give us a call when you don't have the time anymore :)</p>
+                    </div>
+                </div>
+
+
+                <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
+                    <div class="ls-icon">
+                        <span class="icon">
+                            <i aria-hidden="true" class="fas fa-3x fa-baby"></i>
+                        </span>
+                    </div>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">Beta 0.2.0 does not sound very mature?</h5>
+                    <div class="content">
+                        <p>That's because it isn't. This is our first public release. Call it a tech demo, PoC, alpha, beta 0.2.0... but we will grow up fast!</p>
+                    </div>
+                </div>
+                <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
+                    <div class="ls-icon">
+                        <span class="icon">
+                            <i aria-hidden="true" class="fas fa-3x fa-tachometer-alt"></i>
+                        </span>
+                    </div>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">Will it be faster?</h5>
+                    <div class="content">
+                        <p>Yes! Right now it's a mix of different programming languages and not optimized towards performance. In the next releases you will see improved performance.</p>
+                    </div>
+                </div>
+                <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
+                    <div class="ls-icon">
+                        <span class="icon">
+                            <i aria-hidden="true" class="fas fa-3x fa-history"></i>
+                        </span>
+                    </div>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">SQL and relations sound oldschool to me?</h5>
+                    <div class="content">
+                        <p>NoSQL (or better: NoREL) was pretty hot 10 years ago when people wanted scalability and distributed data. However, SQL (and relations) is here to stay — just look at all the new databases, they all want to fuse SQL, relations, scalability and distributed data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-desktop is-offset-2-desktop">
+                    <div class="ls-section-content has-text-centered ls-space-bottom">
+                        <h3 class="title has-text-dark">Contact Us</h3>
+                        <p class="content has-text-dark is-size-5 ">
+                            Write an e-mail, give us a call or stop by for coffee
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+
+                <div class="column is-6">
+
+                    <div class="mapouter">
+                        <div class="gmap_canvas"><iframe class="gmap_canvas" src="https://maps.google.com/maps?q=Fiskerivej%202K&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+                    </div>
+                </div>
+
+                <div class="column is-6 ls-info-contact">
+                    <h4 class="title is-6 has-text-dark ls-half-space">Get in Touch</h4>
+                    <p class="content has-text-grey">
+                    </p>
+
+                    <div class="media ls-item-contact">
+                        <a href="mailto:hello@columno.com" class=" has-text-dark">Email: hello@columno.com</a>
+                    </div>
+                    <div class="media ls-item-contact">
+                        <a href="tel:004571992132" class=" has-text-dark">Phone: +45 7199 2132</a>
+                    </div>
+                    <div class="media ls-item-contact">
+                        <a href="https://www.columno.com" class=" has-text-dark">Web: www.columno.com</a>
+                    </div>
+                    <div class="media ls-item-contact">
+                        <div class="media-left">
+                            <img src="img/Columno_silo.png" />
+                        </div>
+                        Columno ApS<br />
+                        Fiskerivej 2K, 1<br />
+                        8000 Aarhus C
+                    </div>
+                    <div class="media ls-item-contact">
+                        <div class="media-left">
+                            <figure class="image is-128x128">
+                                <img class="is-rounded" src="img/tillanders.jpg">
+                            </figure>
+                        </div>
+                        Till Heinzel, till@columno.com<br />
+                        Developer<br />
+                        Anders Skovsgaard, anders@columno.com<br />
+                        Founder, Data Scientist
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section class="section ls-rainbow-gradient" id="requestaccess">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <h3 class="title ls-half-space has-text-white is-3 has-text-bold">Let's Keep in Touch</h3>
+                    <p class="has-text-white">Enter your email and we'll let you know when there's news.</p>
+                </div>
+                <div class="column is-5 is-offset-2">
+                    <div class="field ls-round-input has-background-white">
+                        <form action="https://columno.us3.list-manage.com/subscribe/post?u=d05306ee2445e5897986ba8ff&amp;id=8d563f0708" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                            <input class="input has-text-grey" type="text" name="EMAIL" placeholder="Enter Your Email">
+                            <button type="submit" class="button is-success">
+                                Get news
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="footer  has-background-primary">
+        <div class="container">
+            <div class="columns has-text-centered-mobile">
+                <div class="column is-4">
+                    <img class="ls-space" src="img/Columno_300.png" title="Columno" width="300">
+                    <p class="has-text-white">
+                        Columno is a deep tech startup building the next-generation database technologies.
+                    </p>
+                </div>
+            </div>
+            <div class="columns ls-footer">
+                <div class="column is-5 is-marginless has-text-centered-mobile content has-text-white">
+                    <p>Copyright 2020 &copy; Columno.com</p>
+                </div>
+                <div class="column is-7">
+                    <ul class="columns ls-bottom-links is-mobile is-multiline is-marginless">
+                        <li class="ls-bottom-link"><a href="/" class="has-text-white">Home</a></li>
+                        <li class="ls-bottom-link"><a href="#whatis" class="has-text-white">What is Columno?</a></li>
+                        <li class="ls-bottom-link"><a href="#contact" class="has-text-white">Contact</a></li>
+                        <span class="navbar-item is-size-5 ls-main-nav--signup"><a href="https://twitter.com/columnodb" class="has-text-white is-paddingless"><i class="fab fa-twitter is-size-4"></i></a> &nbsp; <a href="https://instagram.com/columnodb" class="has-text-white is-paddingless"><i class="fab fa-instagram is-size-4"></i></a> &nbsp; <a href="https://github.com/columno" class="has-text-white is-paddingless"><i class="fab fa-github is-size-4"></i></a> &nbsp; <a href="https://www.linkedin.com/company/columno" class="has-text-white is-paddingless"><i class="fab fa-linkedin is-size-4"></i></a></span>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="ga-pro" class="ga-google-analytics-pro-optout ga-google-analytics-pro-optout-open is-hidden" style="width: 100%; opacity: 1;"><div class="ga-google-analytics-pro-optout-content"><a class="ga-google-analytics-pro-optout-icon ga-google-analytics-pro-optout-info" href="#" title="Click for more information" onclick="alert('We use Google Analytics to collect anonymous usage data. This helps to improve your experience on our website. Also, we store a token in Local Storage when you log in and we remove it when you log out. That\'s it :)'); return false;">?</a><div class="ga-google-analytics-pro-optout-message">This website collects usage data to help us improve your experience of the site. <a class="ga-google-analytics-pro-optin-link" href="#" onclick="document.getElementById('ga-pro').classList.add('is-hidden');localStorage.setItem('cookiebanner','accept'); return false;" title="Continue">Click here to accept</a> or <a class="ga-google-analytics-pro-optout-link" href="#" title="Click here to opt out" onclick="alert('We use Google Analytics to collect anonymous usage data. This helps to improve your experience on our website. Also, we store a token in Local Storage when you log in and we remove it when you log out. By using Columno, you have to accept this :)'); return false;">here if you don't like that</a>.</div><a class="ga-google-analytics-pro-optout-icon ga-google-analytics-pro-optout-close" href="#" onclick="document.getElementById('ga-pro').classList.add('is-hidden'); localStorage.setItem('cookiebanner','accept');return false;" title="Click to close this notice">×</a></div></div>
+    <script type="text/javascript" src="js/main.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152732193-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-152732193-1');</script>
+
+
+</body>
+</html>

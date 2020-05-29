@@ -55,71 +55,53 @@
                         Columno is a novel approach to relational and NoSQL databases that reduces the learning-curve for developers while drastically improving performance and cost.<br />
                     </h2>
                     <h1 class="title is-size-4-mobile is-3 is-spaced has-text-white">
-                        Download Columno Beta v. 0.1<br />
-                        <a href="binaries/Columno-0.1.0-win64.exe" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'windows'});" class="ls-button button is-medium has-text-weight-bold is-success ">
+                        Download Columno Beta v. 0.2.0<br />
+                        <a href="binaries/Columno-0.2.0-win64.exe" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta020','event_label':'windows'});" class="ls-button button is-medium has-text-weight-bold is-success ">
                             <span class="icon is-medium">
                                 <i class="fab fa-windows"></i>
                             </span>
                             <span>Windows</span>
                         </a>
-                        <a href="binaries/Columno-0.1.0-linux.tar.gz" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'linux'});" class="ls-button button is-medium has-text-weight-bold is-success">
+                        <a href="binaries/Columno-0.2.0-linux.tar.gz" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta020','event_label':'linux'});" class="ls-button button is-medium has-text-weight-bold is-success">
                             <span class="icon is-medium">
                                 <i class="fab fa-ubuntu"></i>
                             </span>
                             <span>Linux</span>
                         </a>
-                        <a href="binaries/Columno-0.1.0-macos-x64.pkg" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'osx'});" class="ls-button button is-medium has-text-weight-bold is-success">
+                        <a href="binaries/Columno-0.2.0-macos-x64.pkg" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta020','event_label':'osx'});" class="ls-button button is-medium has-text-weight-bold is-success">
                             <span class="icon is-medium">
                                 <i class="fab fa-apple"></i>
                             </span>
                             <span>Mac</span>
-                        </a>
+                        </a><br/><a href="#" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden'); return false;" class="is-size-7 has-text-white" style="text-decoration: underline;">How to get started?</a>
 
                     </h1>
                     <article class="message is-hidden" id="loginBoxDl">
                         <div class="message-header">
-                            <p>Create a user account</p>
+                            <p>Getting Started</p>
                             <button class="delete" aria-label="delete" onclick="document.getElementById('loginBoxDl').classList.add('is-hidden'); return false;"></button>
                         </div>
                         <div class="message-body">
-                            <h2 class="subtitle is-5 is-marginless">Thanks for downloading Columno!<br />Please create an account to login to the server.<br /><br /></h2>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">E-mail</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control">
-                                            <input class="input" type="email" id="emaildl" placeholder="Your email">
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Password</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control">
-                                            <input class="input" type="password" id="passworddl" placeholder="Your choice"><br /><br />
-                                            <a href="#" id="btnSignup2" onclick="createUser(document.getElementById('emaildl').value, document.getElementById('passworddl').value); return false;" class="ls-button is-size-6 is button has-text-weight-bold is-success">
-                                                Sign up
-                                            </a><br />
-                                            <span id="loginmsg2"></span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            <h2 class="subtitle is-5 is-marginless">Thanks for trying Columno Beta!<br /><br /></h2>
+                            <i>The functionality is very limited in this release. The program is now completely self-contained with no interaction to Columno Cloud — the cloud service dependency from v. 0.1 (still used by the web demo) has been removed.</i><br /><br />
+                            After downloading and installing, the Columno server is listening on port 5435. The server is PostgreSQL-compatible and you may connect to it using:<br />
+                                                                                                                                                                                <code>psql -p 5435 -h localhost -U &lt;any user/pass&gt; -d "dynamodb -region:&lt;REGION (default: eu-west-1)&gt; -table:&lt;default: columno&gt; -accessKeyId:&lt;AWS_ACCESS_KEY_ID&gt; -privateKey:&lt;AWS_SECRET_KEY&gt;"</code><br/>
+                            The database name, <code>-d</code>, holds the API credentials to your Amazon DynamoDB.<br />There is no need for you to create or configure anything in DynamoDB — Columno creates and maintains the DynamoDB table (default 5 read/5 write threads).<br />
+                            Now you may INSERT data to any given table, e.g.:<br />
+                            <code>INSERT INTO Persons (name, city, country) VALUES ('Col Umno', 'Aarhus', 'Denmark');</code><br/>
+                            And then SELECT:<br/>
+                            <code>SELECT * FROM Persons;</code><br/><br/>
+                            Our previous version, 0.1, had more functionality (via Columno Cloud). You may still download it here: <a href="binaries/Columno-0.1.0-win64.exe" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'windows'});">Win</a>, <a href="binaries/Columno-0.1.0-linux.tar.gz" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'linux'});">Linux</a> or <a href="binaries/Columno-0.1.0-macos-x64.pkg" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'osx'});">Mac</a>.<br /><br />
+                            If you have any questions or comments, please <a href="#contact" style="text-decoration: underline;">contact us</a>!
 
-                        </div>
+</div>
                     </article>
                     <h1 class="title is-size-7-mobile is-1 has-text-white"><br /><br /></h1>
                 </div>
                 <div class="column is-5-desktop is-offset-1-desktop has-text-white">
                     <div class="ls-banner has-text-white is-marginless">
-                        <span class="tag is-success has-text-info is-size-6-mobile is-size-7">NEW May 2020</span>
-                        <span class="ls-banner--text is-size-5-mobile is-size-6"><a href="#requestaccess" class="has-text-white has-text-weight-bold">Try our public beta v. 0.1!</a></span>
+                        <span class="tag is-success has-text-info is-size-6-mobile is-size-7">NEW MAY 29, 2020</span>
+                        <span class="ls-banner--text is-size-5-mobile is-size-6"><a href="#" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden'); return false;" class="has-text-white has-text-weight-bold">Try our public beta v. 0.2.0!</a></span>
                     </div>
                     <h2 class="subtitle is-5 has-text-white is-marginless">
                         <br />Live comparison between Columno with Amazon DynamoDB and a standard PostgreSQL database.<br /><br />
@@ -452,9 +434,9 @@
                             <i aria-hidden="true" class="fas fa-3x fa-baby"></i>
                         </span>
                     </div>
-                    <h5 class="title has-text-wight-bold is-5 has-text-white">Beta 0.1 does not sound very mature?</h5>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">Beta 0.2.0 does not sound very mature?</h5>
                     <div class="content">
-                        <p>That's because it isn't. This is our first public release. Call it a tech demo, PoC, alpha, beta 0.1... but we will grow up fast!</p>
+                        <p>That's because it isn't. This is our first public release. Call it a tech demo, PoC, alpha, beta 0.2.0... but we will grow up fast!</p>
                     </div>
                 </div>
                 <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
@@ -593,6 +575,7 @@
                         <li class="ls-bottom-link"><a href="/" class="has-text-white">Home</a></li>
                         <li class="ls-bottom-link"><a href="#whatis" class="has-text-white">What is Columno?</a></li>
                         <li class="ls-bottom-link"><a href="#contact" class="has-text-white">Contact</a></li>
+                        <li class="ls-bottom-link"><a href="https://columno.freshstatus.io/" class="has-text-white">Status</a></li>
                         <span class="navbar-item is-size-5 ls-main-nav--signup"><a href="https://twitter.com/columnodb" class="has-text-white is-paddingless"><i class="fab fa-twitter is-size-4"></i></a> &nbsp; <a href="https://instagram.com/columnodb" class="has-text-white is-paddingless"><i class="fab fa-instagram is-size-4"></i></a> &nbsp; <a href="https://github.com/columno" class="has-text-white is-paddingless"><i class="fab fa-github is-size-4"></i></a> &nbsp; <a href="https://www.linkedin.com/company/columno" class="has-text-white is-paddingless"><i class="fab fa-linkedin is-size-4"></i></a></span>
 
                     </ul>

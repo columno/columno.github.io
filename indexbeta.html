@@ -83,7 +83,7 @@
                         </div>
                         <div class="message-body">
                             <h2 class="subtitle is-5 is-marginless">Thanks for trying Columno Beta!<br /><br /></h2>
-                            <i>The functionality is very limited in this release. The program is now self-contained with no interaction to Columno Cloud — the cloud service dependency from v. 0.1 (still used by the web demo) has been removed.</i><br /><br />
+                            <i>The functionality is very limited in this release. The program is now completely self-contained with no interaction to Columno Cloud — the cloud service dependency from v. 0.1 (still used by the web demo) has been removed.</i><br /><br />
                             After downloading and installing, the Columno server is listening on port 5435. The server is PostgreSQL-compatible and you may connect to it using:<br />
                                                                                                                                                                                 <code>psql -p 5435 -h localhost -U &lt;any user/pass&gt; -d "dynamodb -region:&lt;REGION (default: eu-west-1)&gt; -table:&lt;default: columno&gt; -accessKeyId:&lt;AWS_ACCESS_KEY_ID&gt; -privateKey:&lt;AWS_SECRET_KEY&gt;"</code><br/>
                             The database name, <code>-d</code>, holds the API credentials to your Amazon DynamoDB.<br />There is no need for you to create or configure anything in DynamoDB — Columno creates and maintains the DynamoDB table (default 5 read/5 write threads).<br />

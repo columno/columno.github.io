@@ -55,20 +55,20 @@
                         Columno is a novel approach to relational and NoSQL databases that reduces the learning-curve for developers while drastically improving performance and cost.<br />
                     </h2>
                     <h1 class="title is-size-4-mobile is-3 is-spaced has-text-white">
-                        Download Columno Beta v. 0.2.0<br />
-                        <a href="binaries/Columno-0.2.0-win64.exe" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta020','event_label':'windows'});" class="ls-button button is-medium has-text-weight-bold is-success ">
+                        Download Columno Beta v. 0.3.0<br />
+                        <a href="binaries/Columno-0.3.0-win64.exe" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta030','event_label':'windows'});" class="ls-button button is-medium has-text-weight-bold is-success ">
                             <span class="icon is-medium">
                                 <i class="fab fa-windows"></i>
                             </span>
                             <span>Windows</span>
                         </a>
-                        <a href="binaries/Columno-0.2.0-linux.tar.gz" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta020','event_label':'linux'});" class="ls-button button is-medium has-text-weight-bold is-success">
+                        <a href="binaries/Columno-0.3.0-linux.tar.gz" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta030','event_label':'linux'});" class="ls-button button is-medium has-text-weight-bold is-success">
                             <span class="icon is-medium">
                                 <i class="fab fa-ubuntu"></i>
                             </span>
                             <span>Linux</span>
                         </a>
-                        <a href="binaries/Columno-0.2.0-macos-x64.pkg" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta020','event_label':'osx'});" class="ls-button button is-medium has-text-weight-bold is-success">
+                        <a href="binaries/Columno-0.3.0-macos-x64.pkg" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta030','event_label':'osx'});" class="ls-button button is-medium has-text-weight-bold is-success">
                             <span class="icon is-medium">
                                 <i class="fab fa-apple"></i>
                             </span>
@@ -83,25 +83,25 @@
                         </div>
                         <div class="message-body">
                             <h2 class="subtitle is-5 is-marginless">Thanks for trying Columno Beta!<br /><br /></h2>
-                            <i>The functionality is very limited in this release. The program is now completely self-contained with no interaction to Columno Cloud — the cloud service dependency from v. 0.1 (still used by the web demo) has been removed.</i><br /><br />
                             After downloading and installing, the Columno server is listening on port 5435. The server is PostgreSQL-compatible and you may connect to it using:<br />
-                                                                                                                                                                                <code>psql -p 5435 -h localhost -U &lt;any user/pass&gt; -d "dynamodb -region:&lt;REGION (default: eu-west-1)&gt; -table:&lt;default: columno&gt; -accessKeyId:&lt;AWS_ACCESS_KEY_ID&gt; -privateKey:&lt;AWS_SECRET_KEY&gt;"</code><br/>
+                            <code>psql -p 5435 -h localhost -U &lt;any user/pass&gt; -d "dynamodb -region:&lt;REGION (default: eu-west-1)&gt; -table:&lt;default: columno&gt; -accessKeyId:&lt;AWS_ACCESS_KEY_ID&gt; -privateKey:&lt;AWS_SECRET_KEY&gt;"</code><br />
                             The database name, <code>-d</code>, holds the API credentials to your Amazon DynamoDB.<br />There is no need for you to create or configure anything in DynamoDB — Columno creates and maintains the DynamoDB table (default 5 read/5 write threads).<br />
                             Now you may INSERT data to any given table, e.g.:<br />
-                            <code>INSERT INTO Persons (name, city, country) VALUES ('Col Umno', 'Aarhus', 'Denmark');</code><br/>
-                            And then SELECT:<br/>
-                            <code>SELECT * FROM Persons;</code><br/><br/>
-                            Our previous version, 0.1, had more functionality (via Columno Cloud). You may still download it here: <a href="binaries/Columno-0.1.0-win64.exe" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'windows'});">Win</a>, <a href="binaries/Columno-0.1.0-linux.tar.gz" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'linux'});">Linux</a> or <a href="binaries/Columno-0.1.0-macos-x64.pkg" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta01','event_label':'osx'});">Mac</a>.<br /><br />
+                            <code>INSERT INTO Persons (name, city, age, mature) VALUES ('Col Umno', 'Aarhus', 1, false);<br />INSERT INTO Persons (name, city, age, mature) VALUES ('Seeplu Splus', 'Aarhus', 35, true);</code><br />
+                            And then SELECT:<br />
+                                            <code>SELECT * FROM Persons;<br />
+                                                SELECT name, age FROM Persons WHERE city='Aarhus' ORDER BY name DESC LIMIT 2;
+                                            </code><br /><br />
                             If you have any questions or comments, please <a href="#contact" style="text-decoration: underline;">contact us</a>!
 
-</div>
+                        </div>
                     </article>
                     <h1 class="title is-size-7-mobile is-1 has-text-white"><br /><br /></h1>
                 </div>
                 <div class="column is-5-desktop is-offset-1-desktop has-text-white">
                     <div class="ls-banner has-text-white is-marginless">
-                        <span class="tag is-success has-text-info is-size-6-mobile is-size-7">NEW JUNE, 2020</span>
-                        <span class="ls-banner--text is-size-5-mobile is-size-6"><a href="#" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden'); return false;" class="has-text-white has-text-weight-bold">Try our public beta v. 0.2.0!</a></span>
+                        <span class="tag is-success has-text-info is-size-6-mobile is-size-7">NEW 30 JUNE, 2020</span>
+                        <span class="ls-banner--text is-size-5-mobile is-size-6"><a href="#" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden'); return false;" class="has-text-white has-text-weight-bold">Try our public beta v. 0.3.0!</a></span>
                     </div>
                     <h2 class="subtitle is-5 has-text-white is-marginless">
                         <br />Live comparison between Columno with Amazon DynamoDB and a standard PostgreSQL database.<br /><br />
@@ -291,10 +291,8 @@
                     <article class="card ls-feature-card">
                         <div class="card-content">
                             <div class="media-content has-text-centered">
-                                <h3 class="title is-5 has-text-weight-bold">
-                                    <a href="/" class="has-text-dark" title="">
+                                <h3 class="title is-5 has-text-weight-bold has-text-dark">
                                         The Best from Both Worlds
-                                    </a>
                                 </h3>
                                 <p class="is-size-6">
                                     Well-known SQL interface currently with PostgreSQL support <i>(no need to change sourcecode/no new libraries)</i>.<br />
@@ -308,10 +306,8 @@
                     <article class="card ls-feature-card">
                         <div class="card-content">
                             <div class="media-content has-text-centered">
-                                <h3 class="title is-5 has-text-weight-bold">
-                                    <a href="/" class="has-text-dark" title="">
+                                <h3 class="title is-5 has-text-weight-bold has-text-dark">
                                         Employ New Technology with Zero Experience
-                                    </a>
                                 </h3>
                                 <p class="is-size-6">
                                     Like to use the lastest in-memory databases along with a scalable and cheap key-value store? You will be able to cross-join, insert, update, ... in NoSQL DBs from your standard framework (ORM).
@@ -324,10 +320,8 @@
                     <article class="card ls-feature-card">
                         <div class="card-content">
                             <div class="media-content has-text-centered">
-                                <h3 class="title is-5 has-text-weight-bold">
-                                    <a href="/" class="has-text-dark" title="">
+                                <h3 class="title is-5 has-text-weight-bold has-text-dark">
                                         Cloud or On-premise
-                                    </a>
                                 </h3>
                                 <p class="is-size-6">
                                     Columno Cloud manages everything for you. Just select the NoSQL DBs you would like to use, point to our database and you are up and running.<br />
@@ -389,7 +383,7 @@
                     </div>
                     <h5 class="title has-text-wight-bold is-5 has-text-white">What language and when is the next release?</h5>
                     <div class="content">
-                        <p>Currently, Columno Cloud it's a mix of C++, C# and Python. In a few months it will all be written in C++. The core NoSQL translation is currently done in our cloud-service. Very soon it will all be done within the program. We aim at releasing a new version every month.</p>
+                        <p>Currently, Columno Cloud it's a mix of C++, C# and Python. The core NoSQL translation is currently done in our cloud-service. In August 2020 it will all be done within the C++ program. We aim at releasing a new version every month.</p>
                     </div>
                 </div>
 
@@ -434,9 +428,9 @@
                             <i aria-hidden="true" class="fas fa-3x fa-baby"></i>
                         </span>
                     </div>
-                    <h5 class="title has-text-wight-bold is-5 has-text-white">Beta 0.2.0 does not sound very mature?</h5>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">Beta 0.3.0 does not sound very mature?</h5>
                     <div class="content">
-                        <p>That's because it isn't. This is our first public release. Call it a tech demo, PoC, alpha, beta 0.2.0... but we will grow up fast!</p>
+                        <p>That's because it isn't. We still have very limited functionality but we will grow up fast! We are very focused on performance, stability and high-quality source-code.</p>
                     </div>
                 </div>
                 <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
@@ -447,7 +441,7 @@
                     </div>
                     <h5 class="title has-text-wight-bold is-5 has-text-white">Will it be faster?</h5>
                     <div class="content">
-                        <p>Yes! Right now Columno Cloud a mix of different programming languages and not optimized towards performance. In the next releases you will see improved performance.</p>
+                        <p>Yes! Right now Columno Cloud a mix of different programming languages and not optimized towards performance. In August 2020 we will switch from Columno Cloud (our first prototype, v. 0.1) to the C++ program and then you will see improved performance.</p>
                     </div>
                 </div>
                 <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
@@ -559,11 +553,20 @@
     <footer class="footer  has-background-primary">
         <div class="container">
             <div class="columns has-text-centered-mobile">
-                <div class="column is-4">
+                <div class="column is-5">
                     <img class="ls-space" src="img/Columno_300.png" title="Columno" width="300">
                     <p class="has-text-white">
                         Columno is a deep tech startup building the next-generation database technologies.
                     </p>
+                </div>
+                <div class="column is-7 ">
+                    <p class="has-text-white">
+                        We've partned with NVIDIA for developing our ML index strategies and we're backed by Amazon AWS and Microsoft Azure.
+                    </p>
+                    <a href="https://www.nvidia.com/en-us/deep-learning-ai/"><img class="ls-space" src="img/nvidia.png" title="NVIDIA" width="200"></a> &nbsp;
+                    <a href="https://aws.amazon.com/"><img class="ls-space" src="img/aws.png" title="Amazon AWS" width="200"></a> &nbsp;
+                    <a href="https://azure.microsoft.com/"><img class="ls-space" src="img/azure.png" title="Microsoft Azure" width="200"></a>
+
                 </div>
             </div>
             <div class="columns ls-footer">

@@ -9,6 +9,7 @@
     <link href="css/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link href="css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/octoshrimpy/bulma-o-steps/master/bulma-steps.css" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
@@ -73,7 +74,7 @@
                                 <i class="fab fa-apple"></i>
                             </span>
                             <span>Mac</span>
-                        </a><br/><a href="#" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden'); return false;" class="is-size-7 has-text-white" style="text-decoration: underline;">How to get started?</a>
+                        </a><br /><a href="#" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden'); return false;" class="is-size-7 has-text-white" style="text-decoration: underline;">How to get started?</a>
 
                     </h1>
                     <article class="message is-hidden" id="loginBoxDl">
@@ -89,9 +90,10 @@
                             Now you may INSERT data to any given table, e.g.:<br />
                             <code>INSERT INTO Persons (name, city, age, mature) VALUES ('Col Umno', 'Aarhus', 1, false);<br />INSERT INTO Persons (name, city, age, mature) VALUES ('Seeplu Splus', 'Aarhus', 35, true);</code><br />
                             And then SELECT:<br />
-                                            <code>SELECT * FROM Persons;<br />
-                                                SELECT name, age FROM Persons WHERE city='Aarhus' ORDER BY name DESC LIMIT 2;
-                                            </code><br /><br />
+                            <code>
+                                SELECT * FROM Persons;<br />
+                                SELECT name, age FROM Persons WHERE city='Aarhus' ORDER BY name DESC LIMIT 2;
+                            </code><br /><br />
                             If you have any questions or comments, please <a href="#contact" style="text-decoration: underline;">contact us</a>!
 
                         </div>
@@ -293,7 +295,7 @@
                         <div class="card-content">
                             <div class="media-content has-text-centered">
                                 <h3 class="title is-5 has-text-weight-bold has-text-dark">
-                                        The Best from Both Worlds
+                                    The Best from Both Worlds
                                 </h3>
                                 <p class="is-size-6">
                                     Well-known SQL interface currently with PostgreSQL support <i>(no need to change sourcecode/no new libraries)</i>.<br />
@@ -308,7 +310,7 @@
                         <div class="card-content">
                             <div class="media-content has-text-centered">
                                 <h3 class="title is-5 has-text-weight-bold has-text-dark">
-                                        Employ New Technology with Zero Experience
+                                    Employ New Technology with Zero Experience
                                 </h3>
                                 <p class="is-size-6">
                                     Like to use the lastest in-memory databases along with a scalable and cheap key-value store? You will be able to cross-join, insert, update, ... in NoSQL DBs from your standard framework (ORM).
@@ -322,7 +324,7 @@
                         <div class="card-content">
                             <div class="media-content has-text-centered">
                                 <h3 class="title is-5 has-text-weight-bold has-text-dark">
-                                        Cloud or On-premise
+                                    Cloud or On-premise
                                 </h3>
                                 <p class="is-size-6">
                                     Columno Cloud manages everything for you. Just select the NoSQL DBs you would like to use, point to our database and you are up and running.<br />
@@ -335,9 +337,6 @@
             </div>
         </div>
     </section>
-
-
-
 
 
     <section class="section has-background-primary ls-hero-icons" id="moredetails">
@@ -462,6 +461,112 @@
 
 
 
+    <section class="section has-background-light">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-desktop is-offset-2-desktop">
+                    <div class="ls-section-content has-text-centered ls-space-bottom">
+                        <h3 class="title has-text-dark">Milestones</h3>
+                        <p class="content has-text-dark is-size-5 ">
+                            What we have done and are planning to do
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="steps has-content-centered">
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-baby"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">July 2019</p>
+                    <p>Columno is formally founded. Anders is developing algorithms and making a prototype.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-user-friends"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">March 2020</p>
+                    <p>Till is hired to accelerate the implementation of Columno in C++.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-rocket"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">May 2020</p>
+                    <p>Columno Beta 0.1 is launched with a implementation of the PostgreSQL wire protocol in C++. The rest of the functionality is still from the prototype (mix of C#, Python, C++).</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-code"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">June 2020</p>
+                    <p>Columno Beta 0.2 is released. The C++ program is now self-contained and not depending on the older prototype source-code. Therefore, this version had fewer features than v. 0.1. Got accepted into the NVIDIA Inception program.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-table"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">July 2020</p>
+                    <p>Columno Beta 0.3 is released with more functionality (INSERT/SELECT w. WHERE clause). Got accepted into the Amazon AWS Activate program.</p>
+                </div>
+            </li>
+            <li class="steps-segment is-active">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-sort-amount-down"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4"><strong>Aug 2020</strong></p>
+                    <p>Columno Beta 0.4 is released with a new data-model and more SQL filtering and sorting capabilities.</p>
+                </div>
+            </li>
+            <li class="steps-segment  is-dashed">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-code-branch"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">Upcoming</p>
+                    <p>Redis support, JOINs between different NoSQL DBs, performance optimizations for large amounts of data.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-check"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">Version 1.0</p>
+                    <p>We are PostgreSQL compatible with complete support for INSERT, SELECTs, UPDATE, DELETE,...</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+
     <section class="section" id="contact">
         <div class="container">
             <div class="columns">
@@ -504,7 +609,7 @@
                         Columno ApS<br />
                         Fiskerivej 2K, 1<br />
                         8000 Aarhus C
-                        
+
                     </div>
                     <div class="media ls-item-contact">
                         <div class="media-left">

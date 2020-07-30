@@ -92,8 +92,8 @@
                             <code>INSERT INTO Persons (name, city, age, mature) VALUES ('Col Umno', 'Aarhus', 1, false);<br />INSERT INTO Persons (name, city, age, mature) VALUES ('Seeplu Splus', 'Aarhus', 35, true);</code><br />
                             And then SELECT:<br />
                             <code>
-                                SELECT * FROM Persons;<br />
-                                SELECT name, age FROM Persons WHERE city='Aarhus' ORDER BY name DESC LIMIT 2;
+                                SELECT * FROM Persons ORDER BY name DESC;<br />
+                                SELECT name, age FROM Persons WHERE age>20 AND mature=true OR age<5 ORDER BY name DESC LIMIT 2;
                             </code><br /><br />
                             If you have any questions or comments, please <a href="#contact" style="text-decoration: underline;">contact us</a>!
 

@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <title>Columno - Next-generation database technology</title>
     <link href="css/main.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="js/chartlib.js"></script>
     <link href="css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.rawgit.com/octoshrimpy/bulma-o-steps/master/bulma-steps.css" rel="stylesheet" />
+    <link href="css/bulma-steps.css" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
@@ -190,8 +190,7 @@
                 <h2 class="subtitle">
 
                     With your statements there's a <strong>difference of <span id="avgms"></span>ms in average</strong> per query.<br />
-                    A medium server in AWS EC2 costs from <strong>30USD/month</strong>. Columno can run one query each second for a full month at full speed for <strong>only 0.66USD/month</strong>.
-                    Running your statements above back-to-back non-stop for a full month is only <span id="avgcost"></span>USD/month.<br />
+                    A small server in AWS RDS costs from <strong>30USD/month</strong>.<br/>Columno can run for a full month at full speed for <strong>only 0.66USD/month</strong> with Amazon DynamoDB as storage layer (one read-/write-unit — each with approx. 2.7mio requests/month).
                     <a href="#whatis">How is this possible?</a>
                 </h2>
                 <div class="columns">
@@ -200,14 +199,13 @@
                             Performance Results
                         </h1>
                         <canvas id="performance"></canvas>
-                        <span class="bd-color" style="background: #3e95cd;"></span> Columno (back-to-back) &nbsp; <span class="bd-color" style="background: #c45850;"></span> PostgreSQL
+                        <span class="bd-color" style="background: #3e95cd;"></span> Columno &nbsp; <span class="bd-color" style="background: #c45850;"></span> PostgreSQL
                     </div>
                     <div class="column left is-6-desktop is-offset-1-desktop is-marginless">
                         <h1 class="title is-size-3-mobile is-3 is-spaced">
                             Cost Results
                         </h1>
                         <canvas id="cost"></canvas>
-                        &nbsp; <span class="bd-color" style="background: #377fea;"></span> Columno (1 query/sec)
                         <script src="js/readyforgraphwork.js"></script>
                     </div>
 

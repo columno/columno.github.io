@@ -56,28 +56,6 @@
                     <h2 class="subtitle is-5 has-text-white">
                         Columno is a novel relational database management system (RDBMS) with a completely detached storage layer — you may choose any NoSQL DB for storage.<br/>It flattens the learning-curve for developers while drastically improving scalability, performance and cost.<br /><br />
                     </h2>
-                    <h1 class="title is-size-4-mobile is-3 is-spaced has-text-white">
-                        Download Columno Beta v. 0.4.0<br />
-                        <a href="binaries/Columno-0.4.0-win64.exe" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta030','event_label':'windows'});" class="ls-button button is-medium has-text-weight-bold is-success ">
-                            <span class="icon is-medium">
-                                <i class="fab fa-windows"></i>
-                            </span>
-                            <span>Windows</span>
-                        </a>
-                        <a href="binaries/Columno-0.4.0-linux.tar.gz" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta030','event_label':'linux'});" class="ls-button button is-medium has-text-weight-bold is-success">
-                            <span class="icon is-medium">
-                                <i class="fab fa-ubuntu"></i>
-                            </span>
-                            <span>Linux</span>
-                        </a>
-                        <a href="binaries/Columno-0.4.0-macos-x64.pkg" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden');gtag('event','download',{'event_category':'beta030','event_label':'osx'});" class="ls-button button is-medium has-text-weight-bold is-success">
-                            <span class="icon is-medium">
-                                <i class="fab fa-apple"></i>
-                            </span>
-                            <span>Mac</span>
-                        </a><br /><a href="#" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden'); return false;" class="is-size-7 has-text-white" style="text-decoration: underline;">How to get started?</a>
-                        <br /><br />
-                    </h1>
                     <article class="message is-hidden" id="loginBoxDl">
                         <div class="message-header">
                             <p>Getting Started</p>
@@ -103,21 +81,16 @@
                 </div>
                 <div class="column is-5-desktop is-offset-1-desktop has-text-white">
                     <div class="ls-banner has-text-white is-marginless">
-                        <span class="tag is-success has-text-info is-size-6-mobile is-size-7">NEW</span>
-                        <span class="ls-banner--text is-size-5-mobile is-size-6"><a href="#" onclick="document.getElementById('loginBoxDl').classList.remove('is-hidden'); return false;" class="has-text-white has-text-weight-bold">Try our public beta v. 0.4.0!</a></span>
+                        <span class="tag is-success has-text-info is-size-6-mobile is-size-7">DEMO</span>
+                        <span class="ls-banner--text is-size-5-mobile is-size-6">Live comparison between Columno (with Amazon DynamoDB storage layer) and a standard PostgreSQL database.</span>
                     </div>
-                    <h2 class="subtitle is-5 has-text-white is-marginless">
-                        <br />Live comparison between Columno (with Amazon DynamoDB storage layer) and a standard PostgreSQL database.<br /><br />
-                    </h2>
-                    <span>Enter SQL statements: </span>
-
                     <div class="field">
                         <div class="control">
                             <textarea class="textarea is-success" id="statements" style="font-size:smaller;"></textarea>
                         </div>
                     </div>
                     <a href="#" id="btnExec" onclick="loadDoc();gtag('event','click',{'event_category':'betademo','event_label':'execute'});return false;" class="ls-button is button has-text-weight-bold is-success">
-                        <i class="fas fa-play"></i>&nbsp;Execute
+                        <img src="img/boing.gif" width="18">&nbsp;Execute
                     </a>&nbsp;&nbsp;
                     <a href="#" onclick="getNewSelects(); return false;" class="ls-button is-one-third button has-text-weight-bold is-info">
                         <i class="fas fa-list"></i>&nbsp;New SELECTs
@@ -551,6 +524,17 @@
                     <p>Added Redis support and JOINs between different NoSQL DBs.</p>
                 </div>
             </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-handshake"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">Oct 2020</p>
+                    <p>ABChain has acquired 40% of Columno. Added more SQL support, prepared statements and PostgreSQL fallback.</p>
+                </div>
+            </li>
             <li class="steps-segment is-active">
                 <span class="steps-marker">
                     <span class="icon">
@@ -558,8 +542,8 @@
                     </span>
                 </span>
                 <div class="steps-content">
-                    <p class="is-size-4"><strong>Oct 2020</strong></p>
-                    <p>ABChain has acquired 40% of Columno. Added more SQL support, prepared statements and PostgreSQL fallback.</p>
+                    <p class="is-size-4"><strong>Nov 2020</strong></p>
+                    <p>Added ingestion algorithms for large amounts of data and MongoDB support. Rollout in Asia.</p>
                 </div>
             </li>
             <li class="steps-segment  is-dashed">
@@ -570,7 +554,7 @@
                 </span>
                 <div class="steps-content">
                     <p class="is-size-4">Upcoming</p>
-                    <p>Performance optimizations for very large amounts of data.</p>
+                    <p>Performance optimizations for very large amounts of data and more SQL coverage.</p>
                 </div>
             </li>
             <li class="steps-segment">

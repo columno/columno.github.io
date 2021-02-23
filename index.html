@@ -54,7 +54,7 @@
                         SQL meets NoSQL
                     </h1>
                     <h2 class="subtitle is-5 has-text-white">
-                        Columno is a novel relational database management system (RDBMS) with a completely detached storage layer — you may choose any NoSQL DB for storage.<br/>It flattens the learning-curve for developers while drastically improving scalability, performance and cost.<br /><br />
+                        Columno is a novel relational database management system (RDBMS) with a completely detached storage layer — you may choose any Key-Value Store/NoSQL DB for storage.<br/>It flattens the learning-curve for developers while drastically improving scalability, performance and cost.<br /><br />
                     </h2>
                     <article class="message is-hidden" id="loginBoxDl">
                         <div class="message-header">
@@ -256,7 +256,7 @@
                     <div class="ls-section-content has-text-centered">
                         <h3 class="title has-text-dark">What is Columno?</h3>
                         <p class="content has-text-dark is-size-5">
-                            Columno is basically a full-blown relational database management system with indexing, query processing, query execution, storage, etc. However, we have to adjust all parts of our RDBMS to a very constrained storage layer that consists of other NoSQL DBs. The result is what we consider the perfect database  <i class="far fa-grin-beam"></i><br />
+                            Columno is basically a full-blown relational database management system with indexing, query processing, query execution, storage, etc. However, we have to adjust all parts of our RDBMS to a very constrained storage layer that consists of <i>any</i> Key-Value Store. The result is what we consider the perfect database  <i class="far fa-grin-beam"></i><br />
                         </p>
                     </div>
                 </div>
@@ -271,7 +271,7 @@
                                 </h3>
                                 <p class="is-size-6">
                                     Well-known SQL interface currently with PostgreSQL support <i>(no need to change sourcecode/no new libraries)</i>.<br />
-                                    High scalability and very low cost with NoSQL <i>(Redis, Azure Table Storage coming soon)</i>.<br />
+                                    High scalability and very low cost with Key-Value Stores/NoSQL <i>(currently support for MongoDB, Redis, DynamoDB and more to come)</i>.<br />
                                 </p>
                             </div>
                         </div>
@@ -285,7 +285,7 @@
                                     Employ New Technology with Zero Experience
                                 </h3>
                                 <p class="is-size-6">
-                                    Like to use the latest in-memory databases along with a scalable and cheap key-value store? You will be able to cross-join, insert, update, ... in NoSQL DBs from your standard framework (ORM).
+                                    Like to use the latest in-memory databases along with a scalable and cheap key-value store? You will be able to cross-join, insert, update, ... in Key-Value Stores/NoSQL DBs from your standard framework (ORM).
                                 </p>
                             </div>
                         </div>
@@ -299,7 +299,7 @@
                                     Cloud or On-premise
                                 </h3>
                                 <p class="is-size-6">
-                                    Columno Cloud manages everything for you. Just select the NoSQL DBs you would like to use, point to our database and you are up and running.<br />
+                                    Columno Cloud manages everything for you. Just select the Key-Value Store/NoSQL DBs you would like to use, point to our database and you are up and running.<br />
                                     Want everything on your own network? Download and run Columno on your own server.
                                 </p>
                             </div>
@@ -365,9 +365,9 @@
                             <i aria-hidden="true" class="fas fa-3x fa-not-equal"></i>
                         </span>
                     </div>
-                    <h5 class="title has-text-wight-bold is-5 has-text-white">Is CockroachDB, CosmosDB, Aurora better?</h5>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">Is CockroachDB, TiDB, CosmosDB, Aurora better?</h5>
                     <div class="content">
-                        <p>Many modern scalable databases exist, often categorized as NoSQL or NewSQL. Most of them are awesome. Columno is a different approach — we seamlessly let you choose where to store data. You can, e.g., choose Redis for some data and DynamoDB for other ― all from the same DB connection with the SQL interface you know.</p>
+                        <p>Many modern scalable databases exist, often categorized as NoSQL or NewSQL. Most of them are awesome. Columno is a different and novel approach — we seamlessly let you choose where to store data (<i>any</i> Key-Value Store works). Our algorithms are build for few large read/writes so data can reside outside the instances — even in a different cloud environment.</p>
                     </div>
                 </div>
                 <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
@@ -378,7 +378,7 @@
                     </div>
                     <h5 class="title has-text-wight-bold is-5 has-text-white">What's the overhead of all this?</h5>
                     <div class="content">
-                        <p>The transformation from relational data into a key-value store doesn't come for free. But key-value stores are fast, very fast — and with a lot of effort we can get extremely good performance.</p>
+                        <p>The transformation from relational data into a key-value store doesn't come for free. But key-value stores are fast, very fast, and so are our algorithms — and with a lot of effort we can get extremely good performance.</p>
                     </div>
                 </div>
                 <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
@@ -389,7 +389,7 @@
                     </div>
                     <h5 class="title has-text-wight-bold is-5 has-text-white">I'm King of NoSQL ― why this?</h5>
                     <div class="content">
-                        <p>Are you (and your colleagues — and the one taking over from you <i class="fas fa-grin-wink"></i>) experts in NoSQL DBs and do you know how to easily map all of your data and objects so it's all efficient and scalable — then Columno is a waste of your time. But give us a call when you don't have the time anymore :)</p>
+                        <p>Are you (and your colleagues — and the one taking over from you <i class="fas fa-grin-wink"></i>) experts in Key-Value Stores/NoSQL DBs and do you know how to easily map all of your data and objects so it's all efficient and scalable — then Columno is a waste of your time. But give us a call when you don't have the time anymore :)</p>
                     </div>
                 </div>
 
@@ -400,9 +400,9 @@
                             <i aria-hidden="true" class="fas fa-3x fa-baby"></i>
                         </span>
                     </div>
-                    <h5 class="title has-text-wight-bold is-5 has-text-white">Columno Beta does not sound very mature?</h5>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">What is the point of detached storage?</h5>
                     <div class="content">
-                        <p>We are working hard to provide full SQL support and will drop the "beta" label when we get there! We are very focused on performance, stability and high-quality source-code — great things take time.</p>
+                        <p>It is never a good idea to have tightly coupled components — especially not in a Cloud Native Server-less world. It makes architectures complicated, expensive and hard to maintain. SQL/NewSQL all have tightly coupled storage layers that are close (on the same instance) as their processing algorithms. Columno runs completely seperated from the storage layer — no algorithms reside near the storage layer (simple Key-Value Store). This enables clients to choose any server-less storage provider for their database.</p>
                     </div>
                 </div>
                 <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">
@@ -411,9 +411,9 @@
                             <i aria-hidden="true" class="fas fa-3x fa-tachometer-alt"></i>
                         </span>
                     </div>
-                    <h5 class="title has-text-wight-bold is-5 has-text-white">Will it be faster?</h5>
+                    <h5 class="title has-text-wight-bold is-5 has-text-white">How about ACID?</h5>
                     <div class="content">
-                        <p>Yes! We constantly improve on the algorithms for both small and large amounts of data. So far we have released versions with algorithms suited for small amounts of data. In the upcoming releases you will find our algorithms optimized for large amounts of data.</p>
+                        <p>We have built all our algorithms to enable the safe intensive multi-threading and multi-instance workloads. We have local mutexes to guarantee ACID and our storage model is built for concurrency. We can support (and have tested) thousands of concurrent users/threads.</p>
                     </div>
                 </div>
                 <div class="column is-one-third-desktop is-half-tablet is-half-mobile ls-icon-snippet has-text-centered has-text-white">

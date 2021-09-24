@@ -35,7 +35,7 @@
                 </div>
                 <div class="navbar-menu" id="mainNavMenu">
                     <div class="navbar-end has-text-info">
-                        <span id="loginheaderboxcreateuser" class="tag is-primary has-text-info is-size-6-mobile is-size-7"><a class="has-text-white" href="#loginBox" onclick="document.getElementById('loginBox').classList.remove('is-hidden'); ">Log in</a></span>
+                        <span id="loginheaderboxcreateuser" class="tag is-primary has-text-info is-size-6-mobile is-size-7"><a class="has-text-white" href="#loginBox"  onclick="document.getElementById('loginBox').classList.remove('is-hidden'); ">Log in</a></span>
                         <span id="loginheaderbox" class="tag is-primary has-text-info is-size-6-mobile is-size-7 is-hidden"><span id="loggedinas"></span><a class="has-text-grey" href="#" onclick="loginOut(); return false;">Log out</a></span>
                         <a href="/" class="navbar-item is-size-7 is-active">Home</a>
                         <a href="#whatis" class="navbar-item is-size-7">What is Columno?</a>
@@ -446,117 +446,8 @@
                 </div>
             </div>
         </div>
+        
         <ul class="steps has-content-centered">
-            <li class="steps-segment">
-                <span class="steps-marker">
-                    <span class="icon">
-                        <i class="fa fa-baby"></i>
-                    </span>
-                </span>
-                <div class="steps-content">
-                    <p class="is-size-4">July 2019</p>
-                    <p>Columno is formally founded. Anders is developing algorithms and making a prototype.</p>
-                </div>
-            </li>
-            <li class="steps-segment">
-                <span class="steps-marker">
-                    <span class="icon">
-                        <i class="fa fa-user-friends"></i>
-                    </span>
-                </span>
-                <div class="steps-content">
-                    <p class="is-size-4">March 2020</p>
-                    <p>C++ developer is hired to accelerate the implementation of Columno.</p>
-                </div>
-            </li>
-            <li class="steps-segment">
-                <span class="steps-marker">
-                    <span class="icon">
-                        <i class="fa fa-rocket"></i>
-                    </span>
-                </span>
-                <div class="steps-content">
-                    <p class="is-size-4">May 2020</p>
-                    <p>Columno Beta 0.1 is launched with an implementation of the PostgreSQL wire protocol in C++. The rest of the functionality is still from the prototype (mix of C#, Python, C++).</p>
-                </div>
-            </li>
-            <li class="steps-segment">
-                <span class="steps-marker">
-                    <span class="icon">
-                        <i class="fa fa-code"></i>
-                    </span>
-                </span>
-                <div class="steps-content">
-                    <p class="is-size-4">June 2020</p>
-                    <p>Columno Beta 0.2 is released. The C++ program is now self-contained and not depending on the older prototype source-code. Therefore, this version had fewer features than v. 0.1. Got accepted into the NVIDIA Inception program.</p>
-                </div>
-            </li>
-            <li class="steps-segment">
-                <span class="steps-marker">
-                    <span class="icon">
-                        <i class="fa fa-table"></i>
-                    </span>
-                </span>
-                <div class="steps-content">
-                    <p class="is-size-4">July 2020</p>
-                    <p>Columno Beta 0.3 is released with more functionality (INSERT/SELECT w. WHERE clause). Got accepted into the Amazon AWS Activate program.</p>
-                </div>
-            </li>
-            <li class="steps-segment">
-                <span class="steps-marker">
-                    <span class="icon">
-                        <i class="fa fa-sort-amount-down"></i>
-                    </span>
-                </span>
-                <div class="steps-content">
-                    <p class="is-size-4">Aug 2020</p>
-                    <p>Columno Beta 0.4 is released with a new data-model and more SQL filtering and sorting capabilities.</p>
-                </div>
-            </li>
-            <li class="steps-segment">
-                <span class="steps-marker">
-                    <span class="icon">
-                        <i class="fa fa-object-group"></i>
-                    </span>
-                </span>
-                <div class="steps-content">
-                    <p class="is-size-4">Sept 2020</p>
-                    <p>Added Redis support and JOINs between different NoSQL DBs.</p>
-                </div>
-            </li>
-            <li class="steps-segment">
-                <span class="steps-marker">
-                    <span class="icon">
-                        <i class="fa fa-handshake"></i>
-                    </span>
-                </span>
-                <div class="steps-content">
-                    <p class="is-size-4">Oct 2020</p>
-                    <p>ABChain has acquired 40% of Columno. Added more SQL support, prepared statements and PostgreSQL fallback.</p>
-                </div>
-            </li>
-            <li class="steps-segment">
-                <span class="steps-marker">
-                    <span class="icon">
-                        <i class="fa fa-globe-asia"></i>
-                    </span>
-                </span>
-                <div class="steps-content">
-                    <p class="is-size-4">Nov 2020</p>
-                    <p>Added ingestion algorithms for large amounts of data and MongoDB support. Rollout in Asia.</p>
-                </div>
-            </li>
-            <li class="steps-segment">
-                <span class="steps-marker">
-                    <span class="icon">
-                        <i class="fa fa-clipboard-check"></i>
-                    </span>
-                </span>
-                <div class="steps-content">
-                    <p class="is-size-4">Dec 2020</p>
-                    <p>First production customers now running on Columno Hybrid model.</p>
-                </div>
-            </li>
             <li class="steps-segment">
                 <span class="steps-marker">
                     <span class="icon">
@@ -636,6 +527,17 @@
                     <p>Improved Hybrid read off-loading and improved wire-protocol version support.</p>
                 </div>
             </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-balance-scale-right"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">Aug 2021</p>
+                    <p>Profiler-based performance optimization and more SQL support in Base.</p>
+                </div>
+            </li>
             <li class="steps-segment is-active is-dashed">
                 <span class="steps-marker">
                     <span class="icon">
@@ -643,7 +545,7 @@
                     </span>
                 </span>
                 <div class="steps-content">
-                    <p class="is-size-4"><strong>Aug 2021</strong></p>
+                    <p class="is-size-4"><strong>Sep 2021</strong></p>
                     <p>Instant synced Binlogs for Hybrid and more SQL support.</p>
                 </div>
             </li>
@@ -656,6 +558,121 @@
                 <div class="steps-content">
                     <p class="is-size-4">Upcoming</p>
                     <p>Bulk CUD, Hybrid model offloading, more SQL support in Columno Base.</p>
+                </div>
+            </li>
+        </ul>
+        <ul class="steps has-content-centered">
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-baby"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">July 2019</p>
+                    <p>Columno is formally founded. Anders is developing algorithms and making a prototype.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-user-friends"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">March 2020</p>
+                    <p>C++ developer is hired to accelerate the implementation of Columno.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-rocket"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">May 2020</p>
+                    <p>Columno Beta 0.1 is launched with an implementation of the PostgreSQL wire protocol in C++. The rest of the functionality is still from the prototype (mix of C#, Python, C++).</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-code"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">June 2020</p>
+                    <p>Columno Beta 0.2 is released. The C++ program is now self-contained and not depending on the older prototype source-code. Therefore, this version had fewer features than v. 0.1. Got accepted into the NVIDIA Inception program.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-table"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">July 2020</p>
+                    <p>Columno Beta 0.3 is released with more functionality (INSERT/SELECT w. WHERE clause). Got accepted into the Amazon AWS Activate program.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-sort-amount-down"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">Aug 2020</p>
+                    <p>Columno Beta 0.4 is released with a new data-model and more SQL filtering and sorting capabilities.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-object-group"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">Sept 2020</p>
+                    <p>Added Redis support and JOINs between different NoSQL DBs.</p>
+                </div>
+            </li>
+            
+       
+
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-handshake"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">Oct 2020</p>
+                    <p>ABChain has acquired 40% of Columno. Added more SQL support, prepared statements and PostgreSQL fallback.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-globe-asia"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">Nov 2020</p>
+                    <p>Added ingestion algorithms for large amounts of data and MongoDB support. Rollout in Asia.</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker">
+                    <span class="icon">
+                        <i class="fa fa-clipboard-check"></i>
+                    </span>
+                </span>
+                <div class="steps-content">
+                    <p class="is-size-4">Dec 2020</p>
+                    <p>First production customers now running on Columno Hybrid model.</p>
                 </div>
             </li>
         </ul>

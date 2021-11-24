@@ -253,10 +253,17 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-desktop is-offset-2-desktop">
-                    <div class="ls-section-content has-text-centered">
+                    <div class="ls-section-content has-text-left">
                         <h3 class="title has-text-dark">What is Columno?</h3>
                         <p class="content has-text-dark is-size-5">
-                            Columno is basically a full-blown relational database management system with indexing, query processing, query execution, storage, etc. However, we have to adjust all parts of our RDBMS to a very constrained storage layer that consists of <i>any</i> Key-Value Store with encryption-at-rest. The result is what we consider the perfect database  <i class="far fa-grin-beam"></i><br />
+                            <img src="img/architecture.png" /><br />
+                            A <strong>full-blown relational database management system</strong> with novel approaches to indexing, query processing, query execution, storage, etc.
+                            <br />Stores data in <strong><i>any</i> (cloud) key-value store</strong> (Redis, AWS DynamoDB/S3, Azure Table Storage, MongoDB, CloudFlare KV, Huawei KV, Alababa Cloud KV, etc. with up to <strong>12-nines data durability</strong>.
+                            <br /><strong>Full encryption-at-rest</strong> as we only require direct lookups in the key-value store.<br />Provides compatible <strong>
+                                MySQL and PostgreSQL
+                            </strong> wire protocols that are familiar to users.
+                            <br /><strong>Linear scalability</strong> with independent instances (qps/tps increases for each added instance).
+                            <br />The result is what we consider the <strong>perfect database</strong>!<br />
                         </p>
                     </div>
                 </div>
